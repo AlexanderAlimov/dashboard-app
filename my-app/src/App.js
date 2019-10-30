@@ -1,14 +1,12 @@
 import React from 'react';
-import 'antd/dist/antd.css';
-import './style.css';
 import { Row, Col } from 'antd';
-import { Table } from 'antd';
 import CategoryList from './components/category-list';
 import AddButton from './components/buttons/add-btn';
 import Logo from './components/logo';
+import ProductsInfoTable from './components/products-info-table';
 
-const columns = [{ title: 'Id'},{title: 'Product Name'},{ title: 'Value / Price'},{title: 'Price'},{title: 'edit / remove'}];
-const data = [];
+import 'antd/dist/antd.css';
+import './style.css';
 
 function App() {
   return (
@@ -25,12 +23,12 @@ function App() {
 				</Row>
 			</div>
 			<Row>
-				<Col span={18} push={6}>
-					<Table columns={columns} dataSource={data} />
-				</Col>
-				<Col span={6} pull={18}>
-					<CategoryList  />
-				</Col>
+			<Col span={6} >
+				<CategoryList />
+			</Col>
+			<Col span={17} >
+				<ProductsInfoTable />
+			</Col>
 			</Row>
 		</div>
   );

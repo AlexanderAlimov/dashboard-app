@@ -5,5 +5,4 @@ class Logo extends React.Component{
 		return <div className="my-app__logo"> MY APP</div>
 	}
 }
-
 export default Logo;

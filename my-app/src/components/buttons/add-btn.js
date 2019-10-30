@@ -6,5 +6,4 @@ class AddButton extends React.Component{
 		return <Button className="col-btn">{this.props.title}</Button>
 	}
 }
-
 export default AddButton;

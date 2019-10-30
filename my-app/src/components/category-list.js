@@ -1,5 +1,6 @@
 import React from 'react';
 import Category from './category';
+import RemoveCategoryBtn from "./buttons/rem-categ-btn";
 
 const categoryArr = [
 	{name : "Category1", id:"1"},
@@ -10,7 +11,13 @@ const categoryArr = [
 ]
 
 const category = categoryArr.map(el=>{
-	return <li key={el.id}><Category name={el.name}/></li>
+	return (
+		<li key={el.id}>
+			<RemoveCategoryBtn/>
+			<Category name={el.name}/>
+		</li>
+	)
+	
 })
 
 class CategoryList extends React.Component{

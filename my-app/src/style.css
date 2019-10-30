@@ -8,6 +8,7 @@
 }
 .col-buttons{
 	padding: 70px;
+	text-align: center;
 }
 .col-btn{
 	width: 200px;
@@ -28,4 +29,8 @@
 	padding: 19px;
 	text-align: center;
 	font-size: 1.3rem;;
+}
+
+.btn-remove__categ{
+	margin-right: 1rem;
 }
