@@ -1,0 +1,21 @@
+*{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.col-logo{
+	padding: 90px;
+}
+.col-buttons{
+	padding: 70px;
+}
+.col-btn{
+	width: 200px;
+	margin-right: 15px;
+}
+.col-category-list{
+	padding: 25px 50px 25px 60px;
+}
+.col-category-list li{
+	margin-top: 16px
+}
