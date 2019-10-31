@@ -1,33 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Table, Divider } from 'antd';
 import EditRemoveBtn from './buttons/edit-remove-btn';
-
-const productArr = [
-	{
-		id: "1",
-		name: "product1",
-		purchPrice: 200,
-		salePrice: 300
-	},
-	{
-		id: "2",
-		name: "product2",
-		purchPrice: 200,
-		salePrice: 400
-	},
-	{
-		id: "3",
-		name: "product3",
-		purchPrice: 300,
-		salePrice: 500
-	},
-	{
-		id: "4",
-		name: "product4",
-		purchPrice: 400,
-		salePrice: 600
-	}
-]
+import { addProduct } from '../actions';
 
 const columns = [
 	{ 
@@ -64,10 +39,20 @@ const columns = [
 
 
 class ProductsInfoTable extends React.Component{
+	constructor(props){
+		super(props);
+	}
 	render(){
+		// console.log(this.props);
 		return(
-			<Table columns={columns} dataSource={productArr}/>
+			<Table columns={columns} dataSource={this.props.products}/>
 		)
 	}
 }
-export default ProductsInfoTable;
+
+const mapStateToProps = (state) => ({
+	products : state.products
+}); 
+
+
+export default connect(mapStateToProps)(ProductsInfoTable);

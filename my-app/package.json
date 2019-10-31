@@ -7,13 +7,18 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-redux": "^7.1.1",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "save": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"precommit": "pretty-quick --staged",
+    "postcommit": "git update-index -g",
+    "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "1.18.2"
   }
 }
