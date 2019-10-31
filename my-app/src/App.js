@@ -10,27 +10,25 @@ import './style.css';
 
 function App() {
   return (
-		<div>
-			<div>
-				<Row>
-					<Col span={6} className="col-logo">
-						<Logo	/>
-					</Col>
-					<Col span={18} className="col-buttons">
-						<AddButton  title="Add Category" />
-						<AddButton  title="Add Product" />
-					</Col>
-				</Row>
-			</div>
+		<React.Fragment>
 			<Row>
-			<Col span={6} >
-				<CategoryList />
-			</Col>
-			<Col span={17} >
-				<ProductsInfoTable />
-			</Col>
+				<Col span={6} className="col-logo">
+					<Logo	/>
+				</Col>
+				<Col span={18} className="col-buttons">
+					<AddButton  title="Add Category" />
+					<AddButton  title="Add Product" />
+				</Col>
+			</Row>		
+			<Row className="row-table">
+				<Col span={6} >
+					<CategoryList />
+				</Col>
+				<Col span={18} >
+					<ProductsInfoTable />
+				</Col>
 			</Row>
-		</div>
+		</React.Fragment>
   );
 }
 

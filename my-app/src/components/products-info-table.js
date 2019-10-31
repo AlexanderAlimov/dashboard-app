@@ -54,11 +54,11 @@ const columns = [
 		title: 'edit / remove',
 		key: 'action',
 		render: () => (
-			<span>
+			<React.Fragment>
 				<EditRemoveBtn type="primary" name="Edit" />
 				<Divider type="vertical" />
 				<EditRemoveBtn type="danger" name="Delete" />
-			</span>
+			</React.Fragment>
 		)
 	}];
 

@@ -8,5 +8,4 @@ class EditRemoveBtn extends React.Component{
 		)
 	}
 }
-
 export default EditRemoveBtn;
