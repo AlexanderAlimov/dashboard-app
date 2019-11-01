@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Table, Divider } from 'antd';
-import EditRemoveBtn from './buttons/edit-remove-btn';
-import { addProduct } from '../actions';
+import EditRemoveBtn from '../containers/edit-remove-product';
 
 const columns = [
 	{ 

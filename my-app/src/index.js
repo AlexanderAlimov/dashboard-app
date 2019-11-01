@@ -7,7 +7,7 @@ import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
-console.log(store.getState());
+console.log("state : " , store.getState());
 
 render(
 	<Provider store={store}>

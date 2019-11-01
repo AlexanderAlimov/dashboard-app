@@ -3,8 +3,10 @@ import { Button  } from "antd";
 
 class EditRemoveBtn extends React.Component{
 	render(){
+		const { name , type , removeProduct , editProduct } = this.props;
+		const onClick = name === "Delete" ? removeProduct : editProduct;
 		return(
-			<Button type={this.props.type}>{this.props.name}</Button>
+			<Button onClick={onClick} type={this.props.type}>{this.props.name}</Button>
 		)
 	}
 }

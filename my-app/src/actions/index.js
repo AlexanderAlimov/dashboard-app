@@ -13,7 +13,7 @@ export const addCategory = payload => ({
 	payload
 })
 
-export const removeCategory = text => ({
+export const removeCategory = id => ({
 	type: "REMOVE_CATEGORY",
-	text
+	id
 })

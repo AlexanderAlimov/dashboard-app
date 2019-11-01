@@ -37,3 +37,9 @@
 .row-table{
 	padding-right: 25px;
 }
+
+/*temporary remove table paggination*/
+.ant-pagination{
+	display:none
+}
+/*-----------------------------*/

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {addProduct} from '../actions';
+import {addProduct , addCategory} from '../actions';
 import AddButton from '../components/buttons/add-btn';
 
 
@@ -10,11 +10,17 @@ const newProductTest = {
 	salesPrice: 9999
 }
 
+const newCategoryTest = {
+	name: "Category10",
+	id: 12345 
+}
+
 const mapDispatchToProps = (dispatch ) => ({
-	onClick: () => dispatch(addProduct(newProductTest))
+	addProduct: () => dispatch(addProduct(newProductTest)),
+	addCategory: () => dispatch(addCategory(newCategoryTest))
 })
 
-export default connect(mapDispatchToProps)(AddButton);
+export default connect(null,mapDispatchToProps)(AddButton);
 
 
 
