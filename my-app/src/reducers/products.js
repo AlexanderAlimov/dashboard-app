@@ -37,8 +37,7 @@ const products = (state = initialState, action) => {
 				}
 			]
 		case "REMOVE_PRODUCT" :
-			const newState = state.filter(item => item.id !== action.id);
-			return newState;
+			return state.filter(item => item.id !== action.id);
 		default:
 			return state;
 	}

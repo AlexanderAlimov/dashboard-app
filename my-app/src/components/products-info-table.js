@@ -27,11 +27,11 @@ const columns = [
 	{
 		title: 'edit / remove',
 		key: 'action',
-		render: () => (
+		render: ({id}) => (
 			<React.Fragment>
-				<EditRemoveBtn type="primary" name="Edit" />
+				<EditRemoveBtn type="primary" name="Edit" prodId={id} />
 				<Divider type="vertical" />
-				<EditRemoveBtn type="danger" name="Delete" />
+				<EditRemoveBtn type="danger" name="Delete" prodId={id}/>
 			</React.Fragment>
 		)
 	}];
@@ -42,7 +42,6 @@ class ProductsInfoTable extends React.Component{
 		super(props);
 	}
 	render(){
-		// console.log(this.props);
 		return(
 			<Table columns={columns} dataSource={this.props.products}/>
 		)
