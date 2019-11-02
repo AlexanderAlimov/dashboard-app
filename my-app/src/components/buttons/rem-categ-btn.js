@@ -1,12 +1,19 @@
-import React from 'react';
-import { Button } from 'antd'
+import React from "react";
+import { Button } from "antd";
+import deleteModal from "../modals/delete-modal";
 
-class RemoveCategoryBtn extends React.Component{
-	render(){
-		const {removeCategory} = this.props;
-		return(
-			<Button onClick={removeCategory} className="btn-remove__categ" shape="circle" size="small" type="default">X</Button>
-		)
-	}
+function RemoveCategoryBtn(props) {
+  const { removeCategory } = props;
+  return (
+    <Button
+      onClick={deleteModal.bind(null, removeCategory)}
+      className="btn-remove__categ"
+      shape="circle"
+      size="small"
+      type="default"
+    >
+      X
+    </Button>
+  );
 }
 export default RemoveCategoryBtn;

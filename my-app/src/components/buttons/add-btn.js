@@ -1,11 +1,14 @@
-import React from 'react';
-import { Button } from 'antd';
+import React from "react";
+import { Button } from "antd";
 
-class AddButton extends React.Component{
-	
-	render(){
-		const onClick = this.props.title === "Add Category" ? this.props.addCategory : this.props.addProduct
-		return <Button className="col-btn" onClick={onClick}>{this.props.title}</Button>
-	}
+function AddButton(props) {
+  const { addCategory, addProduct, title } = props;
+  const onClick = title === "Add Category" ? addCategory : addProduct;
+  return (
+    <Button className="col-btn" onClick={onClick}>
+      {title}
+    </Button>
+  );
 }
+
 export default AddButton;
