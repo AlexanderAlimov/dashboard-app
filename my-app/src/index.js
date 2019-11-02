@@ -1,11 +1,14 @@
 import React from "react";
 import App from "./App";
-import { createStore } from "redux";
+import {applyMiddleware ,createStore } from "redux";
+import logger from 'redux-logger'
 import { Provider } from "react-redux";
 import { render } from "react-dom";
 import rootReducer from "./reducers";
 
-const store = createStore(rootReducer);
+
+
+const store = createStore(rootReducer,applyMiddleware(logger));
 
 console.log("state : ", store.getState());
 
