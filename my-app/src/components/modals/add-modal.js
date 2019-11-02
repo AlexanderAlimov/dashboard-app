@@ -1,4 +1,5 @@
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
+import Button from "../buttons/add-btn";
 
 class AddModal extends React.Component {
   state = { visible: false };

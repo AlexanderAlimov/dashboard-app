@@ -1,14 +1,56 @@
-import React from "react";
-import { Button } from "antd";
+import React, { Component } from "react";
+import { Button, Modal } from "antd";
 
-function AddButton(props) {
-  const { addCategory, addProduct, title } = props;
-  const onClick = title === "Add Category" ? addCategory : addProduct;
-  return (
-    <Button className="col-btn" onClick={onClick}>
-      {title}
-    </Button>
-  );
+class AddButton extends Component {
+  state = { visible: false };
+
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  render() {
+    const { addCategory, addProduct, title } = this.props;
+    const onClick = title === "Add Category" ? addCategory : addProduct;
+    const clickAndClose = () => {
+      onClick();
+      this.handleOk();
+    };
+    return (
+      <React.Fragment>
+        <Button className="col-btn" onClick={this.showModal}>
+          {title}
+        </Button>
+        <Modal
+          title={title}
+          visible={this.state.visible}
+          onOk={clickAndClose}
+          onCancel={this.handleCancel}
+          okButtonProps={{ disabled: false }}
+          cancelButtonProps={{ disabled: false }}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
+      </React.Fragment>
+    );
+  }
 }
 
 export default AddButton;
