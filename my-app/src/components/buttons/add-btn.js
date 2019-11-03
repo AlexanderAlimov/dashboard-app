@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Button, Modal } from "antd";
+import AddForm from "../form";
 
 class AddButton extends Component {
   state = { visible: false };
@@ -32,23 +33,18 @@ class AddButton extends Component {
       this.handleOk();
     };
     return (
-      <React.Fragment>
+      <Fragment>
         <Button className="col-btn" onClick={this.showModal}>
           {title}
         </Button>
         <Modal
           title={title}
           visible={this.state.visible}
-          onOk={clickAndClose}
           onCancel={this.handleCancel}
-          okButtonProps={{ disabled: false }}
-          cancelButtonProps={{ disabled: false }}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <AddForm onOk={clickAndClose} title={title} />
         </Modal>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

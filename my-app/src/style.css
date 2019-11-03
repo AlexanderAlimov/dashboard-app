@@ -38,8 +38,12 @@
 	padding-right: 25px;
 }
 
-/*temporary remove table paggination*/
+/*temporary remove table paggination */
 .ant-pagination{
+	display:none
+}
+/*and modal footer buttons*/
+.ant-modal-footer{
 	display:none
 }
 /*-----------------------------*/

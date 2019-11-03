@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Row, Col } from "antd";
 import CategoryList from "./components/category-list";
 import AddButton from "./containers/add-buttons";
@@ -10,7 +10,7 @@ import "./style.css";
 
 function App() {
   return (
-    <React.Fragment>
+    <Fragment>
       <Row>
         <Col span={6} className="col-logo">
           <Logo />
@@ -28,7 +28,7 @@ function App() {
           <ProductsInfoTable />
         </Col>
       </Row>
-    </React.Fragment>
+    </Fragment>
   );
 }
 

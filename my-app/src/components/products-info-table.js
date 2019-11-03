@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Table, Divider } from "antd";
 import EditRemoveBtn from "../containers/edit-remove-product";
@@ -28,7 +28,7 @@ const columns = [
     title: "edit / remove",
     key: "action",
     render: ({ id, name }) => (
-      <React.Fragment>
+      <Fragment>
         <EditRemoveBtn type="primary" name="Edit" prodId={id} prodName={name} />
         <Divider type="vertical" />
         <EditRemoveBtn
@@ -37,7 +37,7 @@ const columns = [
           prodId={id}
           prodName={name}
         />
-      </React.Fragment>
+      </Fragment>
     )
   }
 ];
