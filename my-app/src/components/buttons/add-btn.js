@@ -28,10 +28,6 @@ class AddButton extends Component {
   render() {
     const { addCategory, addProduct, title } = this.props;
     const onClick = title === "Add Category" ? addCategory : addProduct;
-    const clickAndClose = () => {
-      onClick();
-      this.handleOk();
-    };
     return (
       <Fragment>
         <Button className="col-btn" onClick={this.showModal}>
@@ -42,16 +38,10 @@ class AddButton extends Component {
           visible={this.state.visible}
           onCancel={this.handleCancel}
         >
-          <AddForm
-            onOk={clickAndClose}
-            title={title}
-            addCategory={addCategory}
-            addProduct={addProduct}
-          />
+          <AddForm onOk={this.handleOk} title={title} onClick={onClick} />
         </Modal>
       </Fragment>
     );
   }
 }
-
 export default AddButton;
