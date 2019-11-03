@@ -42,7 +42,12 @@ class AddButton extends Component {
           visible={this.state.visible}
           onCancel={this.handleCancel}
         >
-          <AddForm onOk={clickAndClose} title={title} />
+          <AddForm
+            onOk={clickAndClose}
+            title={title}
+            addCategory={addCategory}
+            addProduct={addProduct}
+          />
         </Modal>
       </Fragment>
     );
