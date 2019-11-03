@@ -24,14 +24,22 @@ class AddButton extends Component {
     this.setState({
       visible: false
     });
-	};
+  };
 
   render() {
     const { addCategory, addProduct, title, categories } = this.props;
-		const onClick = title === "Add Category" ? addCategory : addProduct;
-		const addForm = title === "Add Category" 
-		? <AddCategory onOk={this.handleOk} title={title} onClick={onClick} /> 
-		: <AddProduct onOk={this.handleOk} title={title} onClick={onClick} categories={categories}  />
+    const onClick = title === "Add Category" ? addCategory : addProduct;
+    const addForm =
+      title === "Add Category" ? (
+        <AddCategory onOk={this.handleOk} title={title} onClick={onClick} />
+      ) : (
+        <AddProduct
+          onOk={this.handleOk}
+          title={title}
+          onClick={onClick}
+          categories={categories}
+        />
+      );
     return (
       <Fragment>
         <Button className="col-btn" onClick={this.showModal}>

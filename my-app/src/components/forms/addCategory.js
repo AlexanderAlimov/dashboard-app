@@ -14,35 +14,35 @@ const formItemLayout = {
 
 function AddCategory(props) {
   const { onOk, title, onClick } = props;
-	const [categoryValue, setInputValue] = useState("");
+  const [categoryValue, setInputValue] = useState("");
 
   const handleChange = e => {
-		setInputValue(e.target.value)
-	};
+    setInputValue(e.target.value);
+  };
 
   const handleSubmit = e => {
-		e.preventDefault();
+    e.preventDefault();
     onClick({ name: categoryValue, id: 12345 });
     onOk();
     setInputValue("");
-	};
-	
-	return (
-		<Form {...formItemLayout} onSubmit={handleSubmit}>
-			<Form.Item label="Name" hasFeedback>
-				<Input
-					placeholder="Name"
-					onChange={handleChange}
-					value={categoryValue}
-				/>
-			</Form.Item>
+  };
 
-			<Form.Item wrapperCol={{ span: 16, offset: 10 }}>
-				<Button type="primary" htmlType="submit">
-					Add Category
-				</Button>
-			</Form.Item>
-		</Form>
-	);
+  return (
+    <Form {...formItemLayout} onSubmit={handleSubmit}>
+      <Form.Item label="Name" hasFeedback>
+        <Input
+          placeholder="Name"
+          onChange={handleChange}
+          value={categoryValue}
+        />
+      </Form.Item>
+
+      <Form.Item wrapperCol={{ span: 16, offset: 10 }}>
+        <Button type="primary" htmlType="submit">
+          Add Category
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 }
 export default AddCategory;

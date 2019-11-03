@@ -4,7 +4,7 @@ import AddButton from "../components/buttons/add-btn";
 
 const mapStateToProps = state => ({
   categories: state.categories
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   addProduct: obj => dispatch(addProduct(obj)),

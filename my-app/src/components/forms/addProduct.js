@@ -1,45 +1,49 @@
 import React, { useState } from "react";
 
 function AddProduct(props) {
-	const { onClick, onOk, categories } = props;
+  const { onClick, onOk, categories } = props;
   const [state, setState] = useState({
-    name:"",
-		purchPrice:"",
-		salePrice:"",
-		category:""
-  })
-function handleChange(evt) {
-  const value = evt.target.value;
-  setState({
-    ...state,
-    [evt.target.name]: value
+    name: "",
+    purchPrice: "",
+    salePrice: "",
+    category: ""
   });
-}
+  function handleChange(evt) {
+    const value = evt.target.value;
+    setState({
+      ...state,
+      [evt.target.name]: value
+    });
+  }
 
-function handleSubmit(event){
-event.preventDefault();
-onClick(state);
-onOk();
-setState({
-	name:"",
-	purchPrice:"",
-	salePrice:"",
-	category:""
-});
-}
+  function handleSubmit(event) {
+    event.preventDefault();
+    onClick(state);
+    onOk();
+    setState({
+      name: "",
+      purchPrice: "",
+      salePrice: "",
+      category: ""
+    });
+  }
 
-const arrCategories = categories.map(el=>{
-	return <option key={el.id} value={el.name}>{el.name}</option>
-})
+  const arrCategories = categories.map(el => {
+    return (
+      <option key={el.id} value={el.name}>
+        {el.name}
+      </option>
+    );
+  });
   return (
-		<form onSubmit={handleSubmit}>
-			<label>
-				Categories
-				<select name="category" onChange={handleChange} value={state.category}>
-					{arrCategories}
-				</select>
-			</label>
-			<br/>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Categories
+        <select name="category" onChange={handleChange} value={state.category}>
+          {arrCategories}
+        </select>
+      </label>
+      <br />
       <label>
         Name
         <input
@@ -49,7 +53,7 @@ const arrCategories = categories.map(el=>{
           onChange={handleChange}
         />
       </label>
-      <br/>
+      <br />
       <label>
         Purch price
         <input
@@ -59,8 +63,8 @@ const arrCategories = categories.map(el=>{
           onChange={handleChange}
         />
       </label>
-			<br/>
-			<label>
+      <br />
+      <label>
         Sale Price
         <input
           type="text"
@@ -69,11 +73,9 @@ const arrCategories = categories.map(el=>{
           onChange={handleChange}
         />
       </label>
-      <br/>
+      <br />
       <label>
-        <input
-          type="submit"
-        />
+        <input type="submit" />
       </label>
     </form>
   );
