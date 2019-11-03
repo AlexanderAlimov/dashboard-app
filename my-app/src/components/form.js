@@ -15,31 +15,28 @@ const formItemLayout = {
 };
 
 function AddForm(props) {
-  console.log(22222222);
-  console.log(props);
+	console.log(22222222);
+	console.log(props);
   const { onOk, title, addCategory } = props;
-  const [inputValue, setInputValue] = useState("");
-  const handleChange = e => setInputValue(e.target.value);
-  const handleSubmit = e => {
-    e.preventDefault();
-    // this.props.dispatch({ type: "add product", payload: { inputValue }})
-    console.log(33333333);
-    console.log(inputValue);
-    addCategory({ name: inputValue, id: 12345 });
-  };
+	const [inputValue, setInputValue] = useState("");
+	const handleChange = e => setInputValue(e.target.value);
+	const handleSubmit = e => {
+		e.preventDefault();
+		// this.props.dispatch({ type: "add product", payload: { inputValue }})
+		console.log(33333333);
+		console.log(inputValue);
+		addCategory({name:inputValue, id: 12345});
+		onOk();
+	}
   if (title === "Add Category") {
     return (
       <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item label="Name" hasFeedback>
-          <Input
-            placeholder="Name"
-            onChange={handleChange}
-            value={inputValue}
-          />
+          <Input placeholder="Name" onChange={handleChange} value={inputValue} />
         </Form.Item>
 
         <Form.Item wrapperCol={{ span: 16, offset: 10 }}>
-          <Button onClick={onOk} type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit">
             Add
           </Button>
         </Form.Item>

@@ -15,8 +15,8 @@ import AddButton from "../components/buttons/add-btn";
 // };
 
 const mapDispatchToProps = dispatch => ({
-  addProduct: () => dispatch(addProduct()),
-  addCategory: () => dispatch(addCategory())
+  addProduct: (obj) => dispatch(addProduct(obj)),
+  addCategory: (obj) => dispatch(addCategory(obj))
 });
 
 export default connect(
