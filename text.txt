@@ -1,0 +1,83 @@
+// const { Option } = Select;
+
+// const formItemLayout = {
+//   labelCol: {
+//     xs: { span: 24 },
+//     sm: { span: 5 }
+//   },
+//   wrapperCol: {
+//     xs: { span: 24 },
+//     sm: { span: 12 }
+//   }
+// };
+
+// function AddProduct(props) {
+//   const { onOk, title, onClick } = props;
+
+// 	const [productValue, setInputValue] = useState({
+// 		name:"",
+// 		purchPrice:"",
+// 		salePrice:"",
+// 		category:"",
+// 	})
+//   const handleChange = e => {
+// 		const value = e.target.value;
+// 		setInputValue({
+// 			...productValue,
+// 			[e.target.value]: value
+// 		})
+// 	};
+//   const handleSubmit = e => {
+// 		e.preventDefault();
+// 		console.log(444444);
+// 		console.log(productValue);
+//     onClick({ name: productValue, id: 12345 });
+//     onOk();
+//     setInputValue("");
+//   };
+
+//   return (
+//     <Form {...formItemLayout} onSubmit={handleSubmit}>
+//       <Form.Item label="Categories">
+//         <Select placeholder="categories" onChange={handleChange} name="category" value={productValue.category}>
+//           <Option value="1">Option 1</Option>
+//           <Option value="2">Option 2</Option>
+//           <Option value="3">Option 3</Option>
+//         </Select>
+//       </Form.Item>
+
+//       <Form.Item label="Name">
+// 				<Input 
+// 				placeholder="name"
+// 				onChange={handleChange}
+// 				name="name"
+// 				value={productValue.name}
+//          />
+//       </Form.Item>
+
+//       <Form.Item label="Order Price">
+// 				<Input 
+// 				placeholder="order price"
+// 				onChange={handleChange}
+// 				name="purchPrice"
+// 				value={productValue.purchPrice}
+//          />
+//       </Form.Item>
+
+//       <Form.Item label="Sale Price">
+// 				<Input 
+// 				placeholder="sale price"
+// 				onChange={handleChange}
+// 				name="salePrice"
+// 				value={productValue.salePrice}
+//          />
+//       </Form.Item>
+
+//       <Form.Item wrapperCol={{ span: 16, offset: 10 }}>
+//         <Button onClick={onOk} type="primary" htmlType="submit">
+//           Add
+//         </Button>
+//       </Form.Item>
+//     </Form>
+//   );
+// }

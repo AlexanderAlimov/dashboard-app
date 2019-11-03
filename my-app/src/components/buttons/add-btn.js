@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Button, Modal } from "antd";
-import AddForm from "../form";
+import AddCategory from "../forms/addCategory";
+import AddProduct from "../forms/addProduct";
 
 class AddButton extends Component {
   state = { visible: false };
@@ -23,11 +24,14 @@ class AddButton extends Component {
     this.setState({
       visible: false
     });
-  };
+	};
 
   render() {
-    const { addCategory, addProduct, title } = this.props;
-    const onClick = title === "Add Category" ? addCategory : addProduct;
+    const { addCategory, addProduct, title, categories } = this.props;
+		const onClick = title === "Add Category" ? addCategory : addProduct;
+		const addForm = title === "Add Category" 
+		? <AddCategory onOk={this.handleOk} title={title} onClick={onClick} /> 
+		: <AddProduct onOk={this.handleOk} title={title} onClick={onClick} categories={categories}  />
     return (
       <Fragment>
         <Button className="col-btn" onClick={this.showModal}>
@@ -38,7 +42,7 @@ class AddButton extends Component {
           visible={this.state.visible}
           onCancel={this.handleCancel}
         >
-          <AddForm onOk={this.handleOk} title={title} onClick={onClick} />
+          {addForm}
         </Modal>
       </Fragment>
     );
