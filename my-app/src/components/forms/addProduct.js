@@ -1,83 +1,97 @@
 import React, { useState } from "react";
+import { Select, Input, Button, Form } from "antd";
+
+const { Option } = Select;
+
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 5 }
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 12 }
+  }
+};
 
 function AddProduct(props) {
-  const { onClick, onOk, categories } = props;
-  const [state, setState] = useState({
+  const { onOk, onClick, categories } = props;
+
+  const [productValue, setInputValue] = useState({
     name: "",
     purchPrice: "",
     salePrice: "",
     category: ""
   });
-  function handleChange(evt) {
-    const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value
+  const handleChange = e => {
+    const target = e.target ? e.target : e;
+    const { value, name } = target;
+    setInputValue({
+      ...productValue,
+      [name]: value
     });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    onClick(state);
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    onClick(productValue);
     onOk();
-    setState({
-      name: "",
-      purchPrice: "",
-      salePrice: "",
-      category: ""
-    });
-  }
+    setInputValue("");
+  };
 
   const arrCategories = categories.map(el => {
     return (
-      <option key={el.id} value={el.name}>
+      <Option key={el.id} value={el.name}>
         {el.name}
-      </option>
+      </Option>
     );
   });
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Categories
-        <select name="category" onChange={handleChange} value={state.category}>
+    <Form {...formItemLayout} onSubmit={handleSubmit}>
+      <Form.Item label="Categories" hasFeedback>
+        <Select
+          placeholder="categories"
+          onChange={handleChange}
+          name="category"
+          value={productValue.category}
+        >
           {arrCategories}
-        </select>
-      </label>
-      <br />
-      <label>
-        Name
-        <input
-          type="text"
+        </Select>
+      </Form.Item>
+
+      <Form.Item label="Name" hasFeedback>
+        <Input
+          placeholder="name"
+          onChange={handleChange}
+          value={productValue.name}
           name="name"
-          value={state.name}
-          onChange={handleChange}
         />
-      </label>
-      <br />
-      <label>
-        Purch price
-        <input
-          type="text"
+      </Form.Item>
+
+      <Form.Item label="Order Price" hasFeedback>
+        <Input
+          placeholder="order price"
+          onChange={handleChange}
+          value={productValue.purchPrice}
           name="purchPrice"
-          value={state.purchPrice}
-          onChange={handleChange}
         />
-      </label>
-      <br />
-      <label>
-        Sale Price
-        <input
-          type="text"
+      </Form.Item>
+
+      <Form.Item label="Sale Price" hasFeedback>
+        <Input
+          placeholder="sale price"
+          onChange={handleChange}
+          value={productValue.salePrice}
           name="salePrice"
-          value={state.salePrice}
-          onChange={handleChange}
         />
-      </label>
-      <br />
-      <label>
-        <input type="submit" />
-      </label>
-    </form>
+      </Form.Item>
+
+      <Form.Item wrapperCol={{ span: 16, offset: 10 }}>
+        <Button onClick={onOk} type="primary" htmlType="submit">
+          Add
+        </Button>
+      </Form.Item>
+    </Form>
   );
 }
 

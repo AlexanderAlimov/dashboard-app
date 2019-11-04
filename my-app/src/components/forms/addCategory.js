@@ -13,7 +13,7 @@ const formItemLayout = {
 };
 
 function AddCategory(props) {
-  const { onOk, title, onClick } = props;
+  const { onOk, onClick } = props;
   const [categoryValue, setInputValue] = useState("");
 
   const handleChange = e => {

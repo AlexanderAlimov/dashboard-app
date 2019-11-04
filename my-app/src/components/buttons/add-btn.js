@@ -12,14 +12,7 @@ class AddButton extends Component {
     });
   };
 
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
-  };
-
-  handleCancel = e => {
+  handleHideModal = e => {
     console.log(e);
     this.setState({
       visible: false
@@ -31,10 +24,14 @@ class AddButton extends Component {
     const onClick = title === "Add Category" ? addCategory : addProduct;
     const addForm =
       title === "Add Category" ? (
-        <AddCategory onOk={this.handleOk} title={title} onClick={onClick} />
+        <AddCategory
+          onOk={this.handleHideModal}
+          title={title}
+          onClick={onClick}
+        />
       ) : (
         <AddProduct
-          onOk={this.handleOk}
+          onOk={this.handleHideModal}
           title={title}
           onClick={onClick}
           categories={categories}
@@ -48,7 +45,7 @@ class AddButton extends Component {
         <Modal
           title={title}
           visible={this.state.visible}
-          onCancel={this.handleCancel}
+          onCancel={this.handleHideModal}
         >
           {addForm}
         </Modal>
