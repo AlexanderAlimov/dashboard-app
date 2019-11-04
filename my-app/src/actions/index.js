@@ -19,6 +19,6 @@ export const removeCategory = id => ({
 });
 
 export const filterProductsByCategory = id => ({
-	type: "SHOW_FILTER_PRODUCTS",
-	id
-})
+  type: "SHOW_FILTER_PRODUCTS",
+  id
+});

@@ -5,14 +5,18 @@ import RemoveCategoryBtn from "../containers/remove-category";
 import { filterProductsByCategory } from "../actions";
 
 function CategoryList(props) {
-	console.log(88888888);
-	console.log(props);
-	const { showFilterProducts } = props;
+  console.log(88888888);
+  console.log(props);
+  const { showFilterProducts } = props;
   const category = props.categories.map(el => {
     return (
       <li key={el.id}>
         <RemoveCategoryBtn catId={el.id} />
-        <Category name={el.name} onClick={showFilterProducts} catId={Number(el.id)} />
+        <Category
+          name={el.name}
+          onClick={showFilterProducts}
+          catId={Number(el.id)}
+        />
       </li>
     );
   });
@@ -23,7 +27,11 @@ const mapStateToProps = state => ({
   categories: state.categories
 });
 const mapDisPatchToProps = dispatch => ({
-	showFilterProducts: (categoryId) => dispatch(filterProductsByCategory(categoryId))
-})
+  showFilterProducts: categoryId =>
+    dispatch(filterProductsByCategory(categoryId))
+});
 
-export default connect(mapStateToProps,mapDisPatchToProps)(CategoryList);
+export default connect(
+  mapStateToProps,
+  mapDisPatchToProps
+)(CategoryList);
