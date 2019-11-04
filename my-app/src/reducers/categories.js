@@ -1,9 +1,9 @@
 const intitialState = [
-  { name: "Category1", id: "1" },
-  { name: "Category2", id: "2" },
-  { name: "Category3", id: "3" },
-  { name: "Category4", id: "4" },
-  { name: "Without Category", id: "5" }
+  { name: "Category1", id: 1 },
+  { name: "Category2", id: 2 },
+  { name: "Category3", id: 3 },
+  { name: "Category4", id: 4 },
+  { name: "Without Category", id: 5 }
 ];
 
 const categories = (state = intitialState, action) => {
