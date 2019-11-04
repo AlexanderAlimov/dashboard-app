@@ -13,7 +13,6 @@ function deleteModal(...arg) {
     typeof arg[1] === "string"
       ? ""
       : "All products from this category will go to without category";
-  console.log(arg);
   confirm({
     title: title,
     content: description,

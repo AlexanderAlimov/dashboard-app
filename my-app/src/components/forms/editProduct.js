@@ -14,8 +14,8 @@ const formItemLayout = {
   }
 };
 
-function AddProduct(props) {
-  const { onOk, onClick, categories } = props;
+function EditProduct(props) {
+  const { onOk, onClick, categories, prodId } = props;
 
   const [productValue, setInputValue] = useState({
     name: "",
@@ -32,8 +32,9 @@ function AddProduct(props) {
     });
   };
   const handleSubmit = e => {
+    const editProduct = { ...productValue, id: prodId };
     e.preventDefault();
-    onClick(productValue);
+    onClick(editProduct);
     onOk();
     setInputValue("");
   };
@@ -88,11 +89,11 @@ function AddProduct(props) {
 
       <Form.Item wrapperCol={{ span: 16, offset: 10 }}>
         <Button onClick={onOk} type="primary" htmlType="submit">
-          Add
+          Save
         </Button>
       </Form.Item>
     </Form>
   );
 }
 
-export default AddProduct;
+export default EditProduct;

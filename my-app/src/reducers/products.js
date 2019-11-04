@@ -60,6 +60,19 @@ const products = (state = initialState, action) => {
       );
       return [...productWithCategory, ...productWithoutCategory];
 
+    case "EDIT_PRODUCT":
+      const editedProduct = state.filter(item => item.id === action.payload.id);
+      const newEditedProduct = {
+        id: action.payload.id,
+        name: action.payload.name,
+        purchPrice: Number(action.payload.purchPrice),
+        salePrice: Number(action.payload.salePrice),
+        category: action.payload.category
+      };
+      const index = state.findIndex(item => item.id === action.payload.id);
+      state.splice(index, 1, newEditedProduct);
+      return state;
+
     default:
       return state;
   }

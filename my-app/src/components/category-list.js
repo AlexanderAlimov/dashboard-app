@@ -5,8 +5,6 @@ import RemoveCategoryBtn from "../containers/remove-category";
 import { filterProductsByCategory } from "../actions";
 
 function CategoryList(props) {
-  console.log(88888888);
-  console.log(props);
   const { showFilterProducts } = props;
   const category = props.categories.map(el => {
     return (

@@ -22,3 +22,8 @@ export const filterProductsByCategory = id => ({
   type: "SHOW_FILTER_PRODUCTS",
   id
 });
+
+export const editProduct = payload => ({
+  type: "EDIT_PRODUCT",
+  payload
+});
