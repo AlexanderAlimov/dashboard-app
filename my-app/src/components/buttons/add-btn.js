@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Button, Modal } from "antd";
-import AddCategory from "../forms/addCategory";
-import AddProduct from "../forms/addProduct";
-import EditProduct from "../forms/editProduct";
+import AddCategory from "../forms/add-category";
+import AddEditProduct from "../forms/add-edit-product";
 
 class AddButton extends Component {
   state = { visible: false };
@@ -41,20 +40,13 @@ class AddButton extends Component {
           title={title}
           onClick={onClick}
         />
-      ) : title === "Edit" ? (
-        <EditProduct
+      ) : (
+        <AddEditProduct
           onOk={this.handleHideModal}
           title={title}
           onClick={onClick}
           categories={categories}
           prod={product}
-        />
-      ) : (
-        <AddProduct
-          onOk={this.handleHideModal}
-          title={title}
-          onClick={onClick}
-          categories={categories}
         />
       );
     const classNameBtn = title === "Edit" ? "ant-btn__width" : "col-btn";

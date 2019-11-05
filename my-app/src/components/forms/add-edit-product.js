@@ -14,14 +14,18 @@ const formItemLayout = {
   }
 };
 
-function AddProduct(props) {
-  const { onOk, onClick, categories } = props;
+function AddEditProduct(props) {
+  const { onOk, onClick, categories, title, prod } = props;
+  const name = title === "Edit" ? prod.name : "";
+  const purchPrice = title === "Edit" ? prod.purchPrice : "";
+  const salePrice = title === "Edit" ? prod.salePrice : "";
+  const category = title === "Edit" ? prod.category : "";
 
   const [productValue, setInputValue] = useState({
-    name: "",
-    purchPrice: "",
-    salePrice: "",
-    category: ""
+    name: name,
+    purchPrice: purchPrice,
+    salePrice: salePrice,
+    category: category
   });
   const handleChange = e => {
     const target = e.target ? e.target : e;
@@ -32,19 +36,23 @@ function AddProduct(props) {
     });
   };
   const handleSubmit = e => {
+    const product =
+      title === "Edit" ? { ...productValue, id: prod.id } : productValue;
     e.preventDefault();
-    onClick(productValue);
+    onClick(product);
     onOk();
     setInputValue("");
   };
 
   const arrCategories = categories.map(el => {
     return (
-      <option key={el.id} value={el.id}>
+      <option key={el.id} value={el.name}>
         {el.name}
       </option>
     );
   });
+
+  const buttonName = title === "Edit" ? "Save" : "Add";
 
   return (
     <Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -88,11 +96,11 @@ function AddProduct(props) {
 
       <Form.Item wrapperCol={{ span: 16, offset: 10 }}>
         <Button onClick={onOk} type="primary" htmlType="submit">
-          Add
+          {buttonName}
         </Button>
       </Form.Item>
     </Form>
   );
 }
 
-export default AddProduct;
+export default AddEditProduct;
