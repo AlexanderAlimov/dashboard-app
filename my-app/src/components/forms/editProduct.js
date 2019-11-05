@@ -15,13 +15,12 @@ const formItemLayout = {
 };
 
 function EditProduct(props) {
-  const { onOk, onClick, categories, prodId } = props;
-
+  const { onOk, onClick, categories, prod } = props;
   const [productValue, setInputValue] = useState({
-    name: "",
-    purchPrice: "",
-    salePrice: "",
-    category: ""
+    name: prod.name,
+    purchPrice: prod.purchPrice,
+    salePrice: prod.salePrice,
+    category: prod.category
   });
   const handleChange = e => {
     const target = e.target ? e.target : e;
@@ -32,7 +31,7 @@ function EditProduct(props) {
     });
   };
   const handleSubmit = e => {
-    const editProduct = { ...productValue, id: prodId };
+    const editProduct = { ...productValue, id: prod.id };
     e.preventDefault();
     onClick(editProduct);
     onOk();

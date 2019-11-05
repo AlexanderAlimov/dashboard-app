@@ -36,8 +36,9 @@ const products = (state = initialState, action) => {
         {
           id: action.payload.id,
           name: action.payload.name,
-          purchPrice: action.payload.purchPrice,
-          salePrice: action.payload.salePrice
+          purchPrice: Number(action.payload.purchPrice),
+          salePrice: Number(action.payload.salePrice),
+          categoryId: Number(action.payload.category)
         }
       ];
 
@@ -61,17 +62,18 @@ const products = (state = initialState, action) => {
       return [...productWithCategory, ...productWithoutCategory];
 
     case "EDIT_PRODUCT":
-      const editedProduct = state.filter(item => item.id === action.payload.id);
-      const newEditedProduct = {
-        id: action.payload.id,
-        name: action.payload.name,
-        purchPrice: Number(action.payload.purchPrice),
-        salePrice: Number(action.payload.salePrice),
-        category: action.payload.category
-      };
-      const index = state.findIndex(item => item.id === action.payload.id);
-      state.splice(index, 1, newEditedProduct);
-      return state;
+      return state.map(item =>
+        item.id === action.payload.id
+          ? {
+              ...item,
+              id: action.payload.id,
+              name: action.payload.name,
+              purchPrice: Number(action.payload.purchPrice),
+              salePrice: Number(action.payload.salePrice),
+              category: action.payload.category
+            }
+          : item
+      );
 
     default:
       return state;

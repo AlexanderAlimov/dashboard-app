@@ -47,3 +47,7 @@
 	display:none
 }
 /*-----------------------------*/
+.ant-btn__width{
+	width: 76px ;
+	margin-right: 0;
+}

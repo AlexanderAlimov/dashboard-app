@@ -40,7 +40,7 @@ function AddProduct(props) {
 
   const arrCategories = categories.map(el => {
     return (
-      <option key={el.id} value={el.name}>
+      <option key={el.id} value={el.id}>
         {el.name}
       </option>
     );

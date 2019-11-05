@@ -26,7 +26,7 @@ class AddButton extends Component {
       editProduct,
       title,
       categories,
-      prodId
+      product
     } = this.props;
     const onClick =
       title === "Add Category"
@@ -47,7 +47,7 @@ class AddButton extends Component {
           title={title}
           onClick={onClick}
           categories={categories}
-          prodId={prodId}
+          prod={product}
         />
       ) : (
         <AddProduct
@@ -57,9 +57,10 @@ class AddButton extends Component {
           categories={categories}
         />
       );
+    const classNameBtn = title === "Edit" ? "ant-btn__width" : "col-btn";
     return (
       <Fragment>
-        <Button className="col-btn" onClick={this.showModal}>
+        <Button className={classNameBtn} onClick={this.showModal}>
           {title}
         </Button>
         <Modal

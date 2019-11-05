@@ -7,9 +7,15 @@ import { filterProductsByCategory } from "../actions";
 function CategoryList(props) {
   const { showFilterProducts } = props;
   const category = props.categories.map(el => {
+    const removeBtn =
+      el.name === "Without Category" ? (
+        <span></span>
+      ) : (
+        <RemoveCategoryBtn catId={el.id} />
+      );
     return (
       <li key={el.id}>
-        <RemoveCategoryBtn catId={el.id} />
+        {removeBtn}
         <Category
           name={el.name}
           onClick={showFilterProducts}
