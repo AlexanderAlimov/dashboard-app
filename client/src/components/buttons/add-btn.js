@@ -4,6 +4,10 @@ import AddCategory from "../forms/add-category";
 import AddEditProduct from "../forms/add-edit-product";
 
 class AddButton extends Component {
+  componentDidMount() {
+    this.props.getCategories();
+  }
+
   state = { visible: false };
 
   showModal = () => {

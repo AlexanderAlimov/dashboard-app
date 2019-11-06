@@ -1,3 +1,5 @@
+// import fetch from 'cross-fetch'
+
 export const addProduct = payload => ({
   type: "ADD_PRODUCT",
   payload
@@ -27,3 +29,20 @@ export const editProduct = payload => ({
   type: "EDIT_PRODUCT",
   payload
 });
+
+export function getCategories() {
+  return dispatch => {
+    return fetch(`/api/categories`)
+      .then(response => response.json())
+      .then(data => {
+        dispatch(receiveCategories(data));
+      });
+  };
+}
+
+function receiveCategories(payload) {
+  return {
+    type: "RECEIVE_CATEGORIES",
+    payload
+  };
+}

@@ -1,13 +1,8 @@
-const intitialState = [
-  { name: "Category1", id: 1 },
-  { name: "Category2", id: 2 },
-  { name: "Category3", id: 3 },
-  { name: "Category4", id: 4 },
-  { name: "Without Category", id: 5 }
-];
-
-const categories = (state = intitialState, action) => {
+const categories = (state = [], action) => {
   switch (action.type) {
+    case "RECEIVE_CATEGORIES":
+      return [...state, ...action.payload.categories];
+
     case "ADD_CATEGORY":
       return [
         ...state,
