@@ -46,3 +46,20 @@ function receiveCategories(payload) {
     payload
   };
 }
+
+export function getProducts() {
+  return dispatch => {
+    return fetch(`/api/products`)
+      .then(response => response.json())
+      .then(data => {
+        dispatch(receiveProducts(data));
+      });
+  };
+}
+
+function receiveProducts(payload) {
+  return {
+    type: "RECEIVE_PRODUCTS",
+    payload
+  };
+}

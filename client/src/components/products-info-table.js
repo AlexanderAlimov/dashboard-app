@@ -44,7 +44,7 @@ const columns = [
 ];
 
 function ProductsInfoTable({ products }) {
-  return <Table columns={columns} dataSource={products} />;
+  return <Table columns={columns} dataSource={products} rowKey="name" />;
 }
 
 const mapStateToProps = state => ({

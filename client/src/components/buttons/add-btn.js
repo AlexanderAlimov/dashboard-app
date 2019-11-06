@@ -1,73 +1,54 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Button, Modal } from "antd";
 import AddCategory from "../forms/add-category";
 import AddEditProduct from "../forms/add-edit-product";
 
-class AddButton extends Component {
-  componentDidMount() {
-    this.props.getCategories();
-  }
+function AddButton(props) {
+  const [isVisible, setInvisible] = useState(false);
 
-  state = { visible: false };
-
-  showModal = () => {
-    this.setState({
-      visible: true
-    });
+  const showModal = () => {
+    setInvisible(true);
   };
 
-  handleHideModal = e => {
-    this.setState({
-      visible: false
-    });
+  const handleHideModal = () => {
+    setInvisible(false);
   };
-
-  render() {
-    const {
-      addCategory,
-      addProduct,
-      editProduct,
-      title,
-      categories,
-      product
-    } = this.props;
-    const onClick =
-      title === "Add Category"
-        ? addCategory
-        : title === "Edit"
-        ? editProduct
-        : addProduct;
-    const addForm =
-      title === "Add Category" ? (
-        <AddCategory
-          onOk={this.handleHideModal}
-          title={title}
-          onClick={onClick}
-        />
-      ) : (
-        <AddEditProduct
-          onOk={this.handleHideModal}
-          title={title}
-          onClick={onClick}
-          categories={categories}
-          prod={product}
-        />
-      );
-    const classNameBtn = title === "Edit" ? "ant-btn__width" : "col-btn";
-    return (
-      <Fragment>
-        <Button className={classNameBtn} onClick={this.showModal}>
-          {title}
-        </Button>
-        <Modal
-          title={title}
-          visible={this.state.visible}
-          onCancel={this.handleHideModal}
-        >
-          {addForm}
-        </Modal>
-      </Fragment>
+  const {
+    addCategory,
+    addProduct,
+    editProduct,
+    title,
+    categories,
+    product
+  } = props;
+  const onClick =
+    title === "Add Category"
+      ? addCategory
+      : title === "Edit"
+      ? editProduct
+      : addProduct;
+  const addForm =
+    title === "Add Category" ? (
+      <AddCategory onOk={handleHideModal} title={title} onClick={onClick} />
+    ) : (
+      <AddEditProduct
+        onOk={handleHideModal}
+        title={title}
+        onClick={onClick}
+        categories={categories}
+        prod={product}
+      />
     );
-  }
+  const classNameBtn = title === "Edit" ? "ant-btn__width" : "col-btn";
+  return (
+    <Fragment>
+      <Button className={classNameBtn} onClick={showModal}>
+        {title}
+      </Button>
+      <Modal title={title} visible={isVisible} onCancel={handleHideModal}>
+        {addForm}
+      </Modal>
+    </Fragment>
+  );
 }
 export default AddButton;

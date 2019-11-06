@@ -1,35 +1,8 @@
-const initialState = [
-  {
-    id: "1",
-    name: "product1",
-    purchPrice: 200,
-    salePrice: 300,
-    categoryId: 1
-  },
-  {
-    id: "2",
-    name: "product2",
-    purchPrice: 200,
-    salePrice: 400,
-    categoryId: 2
-  },
-  {
-    id: "3",
-    name: "product3",
-    purchPrice: 300,
-    salePrice: 500,
-    categoryId: 2
-  },
-  {
-    id: "4",
-    name: "product4",
-    purchPrice: 400,
-    salePrice: 600,
-    categoryId: 1
-  }
-];
-const products = (state = initialState, action) => {
+const products = (state = [], action) => {
   switch (action.type) {
+    case "RECEIVE_PRODUCTS":
+      return [...state, ...action.payload.products];
+
     case "ADD_PRODUCT":
       return [
         ...state,
