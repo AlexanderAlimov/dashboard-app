@@ -1,9 +1,7 @@
 import React, { Fragment, useEffect } from "react";
-import { connect } from "react-redux";
 import { Table, Divider } from "antd";
 import EditRemoveBtn from "../containers/edit-remove-product";
 import AddButton from "../containers/add-buttons";
-import { getProducts } from "../actions";
 
 const columns = [
   {
@@ -51,15 +49,4 @@ function ProductsInfoTable(props) {
   return <Table columns={columns} dataSource={props.products} rowKey="name" />;
 }
 
-const mapStateToProps = state => ({
-  products: state.products
-});
-
-const mapDisPatchToProps = dispatch => ({
-  getProducts: () => dispatch(getProducts())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDisPatchToProps
-)(ProductsInfoTable);
+export default ProductsInfoTable;
