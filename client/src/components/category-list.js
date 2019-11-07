@@ -2,13 +2,16 @@ import React, { useEffect } from "react";
 import Category from "./category";
 import RemoveCategoryBtn from "../containers/remove-category";
 
-function CategoryList(props) {
+function CategoryList({
+  getCategories = () => {},
+  categories = [],
+  filterProductsByCategory = () => {}
+}) {
   useEffect(() => {
-    props.getCategories();
+    getCategories();
   }, []);
 
-  const { filterProductsByCategory } = props;
-  const category = props.categories.map(el => {
+  const category = categories.map(el => {
     const removeBtn =
       el.name === "Without Category" ? (
         <span></span>

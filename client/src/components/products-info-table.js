@@ -42,11 +42,11 @@ const columns = [
   }
 ];
 
-function ProductsInfoTable(props) {
+function ProductsInfoTable({ getProducts = () => {}, products = [] }) {
   useEffect(() => {
-    props.getProducts();
+    getProducts();
   }, []);
-  return <Table columns={columns} dataSource={props.products} rowKey="name" />;
+  return <Table columns={columns} dataSource={products} rowKey="name" />;
 }
 
 export default ProductsInfoTable;

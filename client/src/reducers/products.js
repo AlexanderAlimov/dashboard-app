@@ -1,9 +1,6 @@
 const products = (state = [], action) => {
   switch (action.type) {
     case "RECEIVE_PRODUCTS":
-      return [...state, ...action.payload.products];
-
-    case "FILTER_PRODUCTS":
       return [...action.payload.products];
 
     case "ADD_PRODUCT":

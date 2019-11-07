@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import { removeCategory } from "../actions";
+import { removeCategory, removeCategoriesAsync } from "../actions";
 import RemoveCategoryBtn from "../components/buttons/rem-categ-btn";
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  removeCategory: () => dispatch(removeCategory(ownProps.catId))
+  removeCategory: () => dispatch(removeCategoriesAsync(ownProps.catId))
 });
 
 export default connect(
