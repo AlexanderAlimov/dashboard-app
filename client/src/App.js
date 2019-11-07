@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col } from "antd";
-import CategoryList from "./components/category-list";
+import CategoryList from "./containers/category-list";
 import AddButton from "./containers/add-buttons";
 import Logo from "./components/logo";
 import ProductsInfoTable from "./components/products-info-table";

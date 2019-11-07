@@ -21,8 +21,8 @@
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
     "postcommit": "git update-index -g",
-		"pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
-		"prettier-watch": "npx onchange '**/*.js' -- npx prettier --write {{changed}}"
+    "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
+    "prettier-watch": "npx onchange '**/*.js' -- npx prettier --write {{changed}}"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -3,6 +3,9 @@ const products = (state = [], action) => {
     case "RECEIVE_PRODUCTS":
       return [...state, ...action.payload.products];
 
+    case "FILTER_PRODUCTS":
+      return [...action.payload.products];
+
     case "ADD_PRODUCT":
       return [
         ...state,
@@ -17,9 +20,6 @@ const products = (state = [], action) => {
 
     case "REMOVE_PRODUCT":
       return state.filter(item => item.id !== action.id);
-
-    case "SHOW_FILTER_PRODUCTS":
-      return state.filter(item => item.categoryId === action.id);
 
     case "REMOVE_CATEGORY":
       const productsByDelCategory = state.filter(

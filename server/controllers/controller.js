@@ -16,6 +16,18 @@ class Controller {
       products: db.products
     });
   }
+
+  getFilterProducts(req, res, next) {
+    const id = req.query.id;
+    const filterProducts = db.products.filter(item => {
+      return Number(item.categoryId) === Number(id);
+    });
+    res.status(200).send({
+      success: "true",
+      message: "products filter successfully",
+      products: filterProducts
+    });
+  }
 }
 
 const controller = new Controller();

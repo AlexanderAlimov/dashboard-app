@@ -1,5 +1,3 @@
-// import fetch from 'cross-fetch'
-
 export const addProduct = payload => ({
   type: "ADD_PRODUCT",
   payload
@@ -17,11 +15,6 @@ export const addCategory = payload => ({
 
 export const removeCategory = id => ({
   type: "REMOVE_CATEGORY",
-  id
-});
-
-export const filterProductsByCategory = id => ({
-  type: "SHOW_FILTER_PRODUCTS",
   id
 });
 
@@ -60,6 +53,22 @@ export function getProducts() {
 function receiveProducts(payload) {
   return {
     type: "RECEIVE_PRODUCTS",
+    payload
+  };
+}
+export function filterProductsByCategory(id) {
+  return dispatch => {
+    return fetch(`/api/filterProducts/?id=${id}`)
+      .then(response => response.json())
+      .then(data => {
+        dispatch(filterProducts(data));
+      });
+  };
+}
+
+function filterProducts(payload) {
+  return {
+    type: "FILTER_PRODUCTS",
     payload
   };
 }
