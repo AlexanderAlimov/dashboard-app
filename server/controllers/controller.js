@@ -2,11 +2,31 @@ import fs from "fs";
 import path from "path";
 const dirPath = path.join(__dirname, "../db/db.json");
 
+const writeToDb = (dataBase, res, item) => {
+  fs.writeFile(dirPath, JSON.stringify(dataBase), (error, data) => {
+    if (error) {
+      res.status(500).send({
+        message: error
+      });
+    }
+    res.status(200).send({
+      message: "success",
+      data: item
+    });
+  });
+};
+
+const parseData = data => JSON.parse(data);
+
 class Controller {
   getCategories(req, res, next) {
     fs.readFile(dirPath, (error, data) => {
-      if (error) throw error;
-      const dB = JSON.parse(data);
+      if (error) {
+        res.status(500).send({
+          message: error
+        });
+      }
+      const dB = parseData(data);
       res.status(200).send({
         categories: dB.categories
       });
@@ -15,24 +35,21 @@ class Controller {
 
   getProducts(req, res, next) {
     fs.readFile(dirPath, (error, data) => {
-      if (error) throw error;
-      const dB = JSON.parse(data);
+      if (error) {
+        res.status(500).send({
+          message: error
+        });
+      }
+      const dB = parseData(data);
+      let filterProducts = null;
+      if (req.query.category) {
+        const id = req.query.category;
+        filterProducts = dB.products.filter(item => {
+          return Number(item.categoryId) === Number(id);
+        });
+      }
       res.status(200).send({
-        products: dB.products
-      });
-    });
-  }
-
-  getFilterProducts(req, res, next) {
-    fs.readFile(dirPath, (error, data) => {
-      if (error) throw error;
-      const dB = JSON.parse(data);
-      const id = req.query.category;
-      const filterProducts = dB.products.filter(item => {
-        return Number(item.categoryId) === Number(id);
-      });
-      res.status(200).send({
-        products: filterProducts
+        products: req.query.category ? filterProducts : dB.products
       });
     });
   }
@@ -40,10 +57,11 @@ class Controller {
   addProduct(req, res, next) {
     fs.readFile(dirPath, (error, data) => {
       if (error) {
-        console.log(error);
-        return;
+        res.status(500).send({
+          message: error
+        });
       }
-      const dB = JSON.parse(data);
+      const dB = parseData(data);
       if (!req.body.name) {
         return res.status(400).send({});
       }
@@ -55,25 +73,18 @@ class Controller {
         category: req.body.category
       };
       dB.products.push(prod);
-      fs.writeFile(dirPath, JSON.stringify(dB), (error, data) => {
-        if (error) {
-          console.log(error);
-          return;
-        }
-        res.status(200).send({
-          message: "success"
-        });
-      });
+      writeToDb(dB, res, prod);
     });
   }
 
   addCategory(req, res, next) {
     fs.readFile(dirPath, (error, data) => {
       if (error) {
-        console.log(error);
-        return;
+        res.status(500).send({
+          message: error
+        });
       }
-      const dB = JSON.parse(data);
+      const dB = parseData(data);
       if (!req.body.name) {
         return res.status(400).send({});
       }
@@ -82,58 +93,36 @@ class Controller {
         name: req.body.name
       };
       dB.categories.push(category);
-      fs.writeFile(dirPath, JSON.stringify(dB), (error, data) => {
-        if (error) {
-          console.log(error);
-          return;
-        }
-        res.status(200).send({
-          message: "success"
-        });
-      });
+      writeToDb(dB, res, category);
     });
   }
 
   removeProduct(req, res, next) {
     fs.readFile(dirPath, (error, data) => {
       if (error) {
-        console.log(error);
-        return;
+        res.status(500).send({
+          message: error
+        });
       }
-      const dB = JSON.parse(data);
+      const dB = parseData(data);
       dB.products = dB.products.filter(item => {
         return Number(item.id) !== Number(req.params.id);
       });
-      fs.writeFile(dirPath, JSON.stringify(dB), (error, data) => {
-        if (error) {
-          console.log(error);
-          return;
-        }
-        res.status(200).send({
-          message: "success"
-        });
-      });
+      writeToDb(dB, res, req.params.id);
     });
   }
   removeCategory(req, res, next) {
     fs.readFile(dirPath, (error, data) => {
       if (error) {
-        console.log(error);
-        return;
+        res.status(500).send({
+          message: error
+        });
       }
-      const dB = JSON.parse(data);
+      const dB = parseData(data);
       dB.categories = dB.categories.filter(item => {
         return Number(item.id) !== Number(req.params.id);
       });
-      fs.writeFile(dirPath, JSON.stringify(dB), (error, data) => {
-        if (error) {
-          console.log(error);
-          return;
-        }
-        res.status(200).send({
-          message: "success"
-        });
-      });
+      writeToDb(dB, res, req.params.id);
     });
   }
 }

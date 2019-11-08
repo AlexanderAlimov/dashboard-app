@@ -4,15 +4,9 @@ const categories = (state = [], action) => {
       return [...state, ...action.payload.categories];
 
     case "ADD_CATEGORY":
-      return [
-        ...state,
-        {
-          name: action.payload.name,
-          id: action.payload.id
-        }
-      ];
+      return [...state, action.payload];
     case "REMOVE_CATEGORY":
-      return state.filter(item => item.id !== action.id);
+      return state.filter(item => Number(item.id) !== Number(action.id));
     default:
       return state;
   }

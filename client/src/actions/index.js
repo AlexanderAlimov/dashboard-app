@@ -1,4 +1,4 @@
-export function addProductAsync(prod) {
+export function addProduct(prod) {
   return dispatch => {
     return fetch(`/api/products`, {
       method: "POST",
@@ -9,12 +9,19 @@ export function addProductAsync(prod) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        console.log(data.data);
+        dispatch(addProductSync(data.data));
       });
   };
 }
+const addProductSync = payload => {
+  return {
+    type: "ADD_PRODUCT",
+    payload
+  };
+};
 
-export function removeProductAsync(prodId) {
+export function removeProduct(prodId) {
   return dispatch => {
     return fetch(`/api/products/${prodId}`, {
       method: "DELETE",
@@ -24,12 +31,19 @@ export function removeProductAsync(prodId) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        dispatch(removeProductSync(data.data));
       });
   };
 }
 
-export function removeCategoriesAsync(catId) {
+const removeProductSync = id => {
+  return {
+    type: "REMOVE_PRODUCT",
+    id
+  };
+};
+
+export function removeCategory(catId) {
   return dispatch => {
     return fetch(`/api/categories/${catId}`, {
       method: "DELETE",
@@ -39,12 +53,19 @@ export function removeCategoriesAsync(catId) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        console.log(data.data);
+        dispatch(removeCategorySync(data.data));
       });
   };
 }
+const removeCategorySync = id => {
+  return {
+    type: "REMOVE_CATEGORY",
+    id
+  };
+};
 
-export function addCategoryAsync(category) {
+export function addCategory(category) {
   return dispatch => {
     return fetch(`/api/categories`, {
       method: "POST",
@@ -55,10 +76,17 @@ export function addCategoryAsync(category) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        dispatch(addCategorySync(data.data));
       });
   };
 }
+
+const addCategorySync = payload => {
+  return {
+    type: "ADD_CATEGORY",
+    payload
+  };
+};
 
 export const editProduct = payload => ({
   type: "EDIT_PRODUCT",
@@ -82,9 +110,10 @@ function receiveCategories(payload) {
   };
 }
 
-export function getProducts() {
+export function getProducts(catId = undefined) {
+  const url = catId ? `/api/products/?category=${catId}` : `/api/products`;
   return dispatch => {
-    return fetch(`/api/products`)
+    return fetch(url)
       .then(response => response.json())
       .then(data => {
         dispatch(receiveProducts(data));
@@ -96,14 +125,5 @@ function receiveProducts(payload) {
   return {
     type: "RECEIVE_PRODUCTS",
     payload
-  };
-}
-export function filterProductsByCategory(catId) {
-  return dispatch => {
-    return fetch(`/api/filterProducts/?category=${catId}`)
-      .then(response => response.json())
-      .then(data => {
-        dispatch(receiveProducts(data));
-      });
   };
 }

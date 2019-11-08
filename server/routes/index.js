@@ -7,8 +7,6 @@ router.get("/api/categories", controller.getCategories);
 
 router.get("/api/products", controller.getProducts);
 
-router.get("/api/filterProducts", controller.getFilterProducts);
-
 router.post("/api/products", controller.addProduct);
 
 router.post("/api/categories", controller.addCategory);

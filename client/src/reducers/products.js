@@ -4,19 +4,10 @@ const products = (state = [], action) => {
       return [...action.payload.products];
 
     case "ADD_PRODUCT":
-      return [
-        ...state,
-        {
-          id: action.payload.id,
-          name: action.payload.name,
-          purchPrice: Number(action.payload.purchPrice),
-          salePrice: Number(action.payload.salePrice),
-          categoryId: Number(action.payload.category)
-        }
-      ];
+      return [...state, action.payload];
 
     case "REMOVE_PRODUCT":
-      return state.filter(item => item.id !== action.id);
+      return state.filter(item => Number(item.id) !== Number(action.id));
 
     case "REMOVE_CATEGORY":
       const productsByDelCategory = state.filter(

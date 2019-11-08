@@ -5,7 +5,7 @@ import RemoveCategoryBtn from "../containers/remove-category";
 function CategoryList({
   getCategories = () => {},
   categories = [],
-  filterProductsByCategory = () => {}
+  getProducts = () => {}
 }) {
   useEffect(() => {
     getCategories();
@@ -21,11 +21,7 @@ function CategoryList({
     return (
       <li key={el.id}>
         {removeBtn}
-        <Category
-          name={el.name}
-          onClick={filterProductsByCategory}
-          catId={Number(el.id)}
-        />
+        <Category name={el.name} onClick={getProducts} catId={Number(el.id)} />
       </li>
     );
   });
