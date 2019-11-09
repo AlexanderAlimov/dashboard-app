@@ -8,7 +8,6 @@
 }
 .col-buttons{
 	padding: 70px;
-	text-align: center;
 }
 .col-btn{
 	width: 200px;
@@ -37,17 +36,8 @@
 .row-table{
 	padding-right: 25px;
 }
-
-/*temporary remove table paggination */
-.ant-pagination{
-	display:none
-}
 /*and modal footer buttons*/
 .ant-modal-footer{
 	display:none
 }
 /*-----------------------------*/
-.ant-btn__width{
-	width: 76px ;
-	margin-right: 0;
-}

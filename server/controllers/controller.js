@@ -10,7 +10,6 @@ const writeToDb = (dataBase, res, item) => {
       });
     }
     res.status(200).send({
-      message: "success",
       data: item
     });
   });
@@ -18,15 +17,20 @@ const writeToDb = (dataBase, res, item) => {
 
 const parseData = data => JSON.parse(data);
 
+const accessDB = onSuccess => {
+  fs.readFile(dirPath, (error, data) => {
+    if (error) {
+      res.status(500).send({ message: error });
+      return;
+    }
+    const dB = parseData(data);
+    onSuccess(dB);
+  });
+};
+
 class Controller {
   getCategories(req, res, next) {
-    fs.readFile(dirPath, (error, data) => {
-      if (error) {
-        res.status(500).send({
-          message: error
-        });
-      }
-      const dB = parseData(data);
+    accessDB(dB => {
       res.status(200).send({
         categories: dB.categories
       });
@@ -34,13 +38,7 @@ class Controller {
   }
 
   getProducts(req, res, next) {
-    fs.readFile(dirPath, (error, data) => {
-      if (error) {
-        res.status(500).send({
-          message: error
-        });
-      }
-      const dB = parseData(data);
+    accessDB(dB => {
       let filterProducts = null;
       if (req.query.category) {
         const id = req.query.category;
@@ -55,15 +53,11 @@ class Controller {
   }
 
   addProduct(req, res, next) {
-    fs.readFile(dirPath, (error, data) => {
-      if (error) {
-        res.status(500).send({
-          message: error
-        });
-      }
-      const dB = parseData(data);
+    accessDB(dB => {
       if (!req.body.name) {
-        return res.status(400).send({});
+        return res.status(400).send({
+          message: "Name is Reuqired!"
+        });
       }
       const prod = {
         id: dB.products.length + 1,
@@ -78,13 +72,7 @@ class Controller {
   }
 
   addCategory(req, res, next) {
-    fs.readFile(dirPath, (error, data) => {
-      if (error) {
-        res.status(500).send({
-          message: error
-        });
-      }
-      const dB = parseData(data);
+    accessDB(dB => {
       if (!req.body.name) {
         return res.status(400).send({});
       }
@@ -98,27 +86,16 @@ class Controller {
   }
 
   removeProduct(req, res, next) {
-    fs.readFile(dirPath, (error, data) => {
-      if (error) {
-        res.status(500).send({
-          message: error
-        });
-      }
-      const dB = parseData(data);
+    accessDB(dB => {
       dB.products = dB.products.filter(item => {
         return Number(item.id) !== Number(req.params.id);
       });
       writeToDb(dB, res, req.params.id);
     });
   }
+
   removeCategory(req, res, next) {
-    fs.readFile(dirPath, (error, data) => {
-      if (error) {
-        res.status(500).send({
-          message: error
-        });
-      }
-      const dB = parseData(data);
+    accessDB(dB => {
       dB.categories = dB.categories.filter(item => {
         return Number(item.id) !== Number(req.params.id);
       });

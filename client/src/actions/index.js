@@ -8,9 +8,8 @@ export function addProduct(prod) {
       body: JSON.stringify(prod)
     })
       .then(response => response.json())
-      .then(data => {
-        console.log(data.data);
-        dispatch(addProductSync(data.data));
+      .then(({ data, message }) => {
+        message ? dispatch(isError(message)) : dispatch(addProductSync(data));
       });
   };
 }
@@ -30,8 +29,10 @@ export function removeProduct(prodId) {
       }
     })
       .then(response => response.json())
-      .then(data => {
-        dispatch(removeProductSync(data.data));
+      .then(({ data, message }) => {
+        message
+          ? dispatch(isError(message))
+          : dispatch(removeProductSync(data));
       });
   };
 }
@@ -52,9 +53,10 @@ export function removeCategory(catId) {
       }
     })
       .then(response => response.json())
-      .then(data => {
-        console.log(data.data);
-        dispatch(removeCategorySync(data.data));
+      .then(({ data, message }) => {
+        message
+          ? dispatch(isError(message))
+          : dispatch(removeCategorySync(data));
       });
   };
 }
@@ -75,8 +77,8 @@ export function addCategory(category) {
       body: JSON.stringify(category)
     })
       .then(response => response.json())
-      .then(data => {
-        dispatch(addCategorySync(data.data));
+      .then(({ data, message }) => {
+        message ? dispatch(isError(message)) : dispatch(addCategorySync(data));
       });
   };
 }
@@ -97,33 +99,51 @@ export function getCategories() {
   return dispatch => {
     return fetch(`/api/categories`)
       .then(response => response.json())
-      .then(data => {
-        dispatch(receiveCategories(data));
+      .then(({ categories, message }) => {
+        message
+          ? dispatch(isError(message))
+          : dispatch(receiveCategories(categories));
       });
   };
 }
 
-function receiveCategories(payload) {
+const receiveCategories = payload => {
   return {
     type: "RECEIVE_CATEGORIES",
     payload
   };
-}
+};
 
 export function getProducts(catId = undefined) {
   const url = catId ? `/api/products/?category=${catId}` : `/api/products`;
   return dispatch => {
     return fetch(url)
       .then(response => response.json())
-      .then(data => {
-        dispatch(receiveProducts(data));
+      .then(({ products, message }) => {
+        message
+          ? dispatch(isError(message))
+          : dispatch(receiveProducts(products));
       });
   };
 }
 
-function receiveProducts(payload) {
+const receiveProducts = payload => {
   return {
     type: "RECEIVE_PRODUCTS",
     payload
   };
-}
+};
+
+const isError = payload => {
+  return {
+    type: "IS_ERROR",
+    payload
+  };
+};
+
+export const removeError = payload => {
+  return {
+    type: "REMOVE_ERROR",
+    payload
+  };
+};
