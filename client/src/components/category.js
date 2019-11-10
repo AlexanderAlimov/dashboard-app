@@ -2,7 +2,12 @@ import React from "react";
 
 function Category({ name, onClick, catId }) {
   return (
-    <a href="#" onClick={onClick.bind(null, catId)}>
+    <a
+      href="#"
+      onClick={() => {
+        onClick(catId);
+      }}
+    >
       {name}
     </a>
   );

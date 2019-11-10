@@ -15,4 +15,6 @@ router.delete("/api/products/:id", controller.removeProduct);
 
 router.delete("/api/categories/:id", controller.removeCategory);
 
+router.put("/api/products/:id", controller.editProduct);
+
 export default router;

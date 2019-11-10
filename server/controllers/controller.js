@@ -102,6 +102,24 @@ class Controller {
       writeToDb(dB, res, req.params.id);
     });
   }
+
+  editProduct(req, res, next) {
+    accessDB(dB => {
+      const prodId = req.params.id;
+      const prodIndex = dB.products.findIndex(item =>
+        Number(item.id === Number(prodId))
+      );
+      const editedProduct = {
+        id: Number(prodId),
+        name: req.body.name,
+        category: req.body.category,
+        purchPrice: Number(req.body.purchPrice),
+        salePrice: Number(req.body.salePrice)
+      };
+      dB.products.splice(prodIndex, 1, editedProduct);
+      writeToDb(dB, res, editedProduct);
+    });
+  }
 }
 
 const controller = new Controller();

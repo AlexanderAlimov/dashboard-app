@@ -3,178 +3,25 @@
     {
       "id": 1,
       "name": "product1",
-      "purchPrice": 200,
-      "salePrice": 300,
-      "categoryId": 1
+      "category": "Category3",
+      "purchPrice": 100,
+      "salePrice": 200
     },
     {
       "id": 2,
-      "name": "product2",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 4
+      "name": "Product245",
+      "category": "Category3",
+      "purchPrice": 1008877,
+      "salePrice": 2006564646
     },
     {
       "id": 3,
       "name": "Product3",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 3
+      "purchPrice": 100,
+      "salePrice": 200,
+      "categoryId": 2
     },
-    {
-      "id": 4,
-      "name": "Product4",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 1
-    },
-    {
-      "id": 5,
-      "name": "product5",
-      "purchPrice": 200,
-      "salePrice": 300,
-      "categoryId": 1
-    },
-    {
-      "id": 6,
-      "name": "product6",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 4
-    },
-    {
-      "id": 7,
-      "name": "Product7",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 3
-    },
-    {
-      "id": 8,
-      "name": "Product8",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 1
-    },
-    {
-      "id": 9,
-      "name": "product9",
-      "purchPrice": 200,
-      "salePrice": 300,
-      "categoryId": 1
-    },
-    {
-      "id": 10,
-      "name": "product10",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 4
-    },
-    {
-      "id": 11,
-      "name": "Product11",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 3
-    },
-    {
-      "id": 12,
-      "name": "Product12",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 1
-    },
-    {
-      "id": 13,
-      "name": "product13",
-      "purchPrice": 200,
-      "salePrice": 300,
-      "categoryId": 1
-    },
-    {
-      "id": 14,
-      "name": "product14",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 4
-    },
-    {
-      "id": 15,
-      "name": "Product15",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 3
-    },
-    {
-      "id": 16,
-      "name": "Product16",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 1
-    },
-    {
-      "id": 17,
-      "name": "product17",
-      "purchPrice": 200,
-      "salePrice": 300,
-      "categoryId": 1
-    },
-    {
-      "id": 18,
-      "name": "product18",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 4
-    },
-    {
-      "id": 19,
-      "name": "Product19",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 3
-    },
-    {
-      "id": 20,
-      "name": "Product20",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 1
-    },
-    {
-      "id": 21,
-      "name": "product21",
-      "purchPrice": 200,
-      "salePrice": 300,
-      "categoryId": 1
-    },
-    {
-      "id": 22,
-      "name": "product22",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 4
-    },
-    {
-      "id": 223,
-      "name": "Product223",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 3
-    },
-    {
-      "id": 24,
-      "name": "Product24",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "categoryId": 1
-    },
-    {
-      "id": 25,
-      "name": "Sasha Alimov",
-      "purchPrice": "123",
-      "salePrice": "2345",
-      "category": "Category3"
-    }
+    { "id": 4, "name": "Product4", "purchPrice": 1008, "salePrice": 2006 }
   ],
   "categories": [
     { "name": "Category1", "id": 1 },

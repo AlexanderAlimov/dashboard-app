@@ -1,5 +1,10 @@
+const errorDispatch = (mssg, dispatch, successFunc) => {
+  mssg ? dispatch(isError(mssg)) : dispatch(successFunc);
+};
+
 export function addProduct(prod) {
   return dispatch => {
+    dispatch(removeError());
     return fetch(`/api/products`, {
       method: "POST",
       headers: {
@@ -9,7 +14,7 @@ export function addProduct(prod) {
     })
       .then(response => response.json())
       .then(({ data, message }) => {
-        message ? dispatch(isError(message)) : dispatch(addProductSync(data));
+        errorDispatch(message, dispatch, addProductSync(data));
       });
   };
 }
@@ -22,6 +27,7 @@ const addProductSync = payload => {
 
 export function removeProduct(prodId) {
   return dispatch => {
+    dispatch(removeError());
     return fetch(`/api/products/${prodId}`, {
       method: "DELETE",
       headers: {
@@ -30,9 +36,7 @@ export function removeProduct(prodId) {
     })
       .then(response => response.json())
       .then(({ data, message }) => {
-        message
-          ? dispatch(isError(message))
-          : dispatch(removeProductSync(data));
+        errorDispatch(message, dispatch, removeProductSync(data));
       });
   };
 }
@@ -46,6 +50,7 @@ const removeProductSync = id => {
 
 export function removeCategory(catId) {
   return dispatch => {
+    dispatch(removeError());
     return fetch(`/api/categories/${catId}`, {
       method: "DELETE",
       headers: {
@@ -54,9 +59,7 @@ export function removeCategory(catId) {
     })
       .then(response => response.json())
       .then(({ data, message }) => {
-        message
-          ? dispatch(isError(message))
-          : dispatch(removeCategorySync(data));
+        errorDispatch(message, dispatch, removeCategorySync(data));
       });
   };
 }
@@ -69,6 +72,7 @@ const removeCategorySync = id => {
 
 export function addCategory(category) {
   return dispatch => {
+    dispatch(removeError());
     return fetch(`/api/categories`, {
       method: "POST",
       headers: {
@@ -78,7 +82,7 @@ export function addCategory(category) {
     })
       .then(response => response.json())
       .then(({ data, message }) => {
-        message ? dispatch(isError(message)) : dispatch(addCategorySync(data));
+        errorDispatch(message, dispatch, addCategorySync(data));
       });
   };
 }
@@ -90,6 +94,23 @@ const addCategorySync = payload => {
   };
 };
 
+export const editProductAsync = prod => {
+  return dispatch => {
+    dispatch(removeError());
+    return fetch(`/api/products/${prod.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify(prod)
+    })
+      .then(response => response.json())
+      .then(({ data, message }) => {
+        errorDispatch(message, dispatch, editProduct(data));
+      });
+  };
+};
+
 export const editProduct = payload => ({
   type: "EDIT_PRODUCT",
   payload
@@ -97,12 +118,11 @@ export const editProduct = payload => ({
 
 export function getCategories() {
   return dispatch => {
+    dispatch(removeError());
     return fetch(`/api/categories`)
       .then(response => response.json())
       .then(({ categories, message }) => {
-        message
-          ? dispatch(isError(message))
-          : dispatch(receiveCategories(categories));
+        errorDispatch(message, dispatch, receiveCategories(categories));
       });
   };
 }
@@ -117,12 +137,11 @@ const receiveCategories = payload => {
 export function getProducts(catId = undefined) {
   const url = catId ? `/api/products/?category=${catId}` : `/api/products`;
   return dispatch => {
+    dispatch(removeError());
     return fetch(url)
       .then(response => response.json())
       .then(({ products, message }) => {
-        message
-          ? dispatch(isError(message))
-          : dispatch(receiveProducts(products));
+        errorDispatch(message, dispatch, receiveProducts(products));
       });
   };
 }
@@ -141,9 +160,8 @@ const isError = payload => {
   };
 };
 
-export const removeError = payload => {
+export const removeError = () => {
   return {
-    type: "REMOVE_ERROR",
-    payload
+    type: "REMOVE_ERROR"
   };
 };

@@ -6,7 +6,9 @@ function RemoveCategoryBtn(props) {
   const { removeCategory } = props;
   return (
     <Button
-      onClick={deleteModal.bind(null, removeCategory)}
+      onClick={() => {
+        deleteModal(removeCategory);
+      }}
       className="btn-remove__categ"
       shape="circle"
       size="small"

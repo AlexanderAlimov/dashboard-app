@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { Table, Divider } from "antd";
-import EditRemoveBtn from "../containers/edit-remove-product";
+import RemoveBtn from "../containers/remove-product";
 import AddButton from "../containers/add-buttons";
 
 const columns = [
@@ -31,7 +31,7 @@ const columns = [
       <Fragment>
         <AddButton title="Edit" product={prod} />
         <Divider type="vertical" />
-        <EditRemoveBtn
+        <RemoveBtn
           type="danger"
           name="Delete"
           prodId={prod.id}
