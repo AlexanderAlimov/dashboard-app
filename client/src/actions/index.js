@@ -94,7 +94,7 @@ const addCategorySync = payload => {
   };
 };
 
-export const editProductAsync = prod => {
+export const editProduct = prod => {
   return dispatch => {
     dispatch(removeError());
     return fetch(`/api/products/${prod.id}`, {
@@ -106,12 +106,12 @@ export const editProductAsync = prod => {
     })
       .then(response => response.json())
       .then(({ data, message }) => {
-        errorDispatch(message, dispatch, editProduct(data));
+        errorDispatch(message, dispatch, editProductSync(data));
       });
   };
 };
 
-export const editProduct = payload => ({
+export const editProductSync = payload => ({
   type: "EDIT_PRODUCT",
   payload
 });
