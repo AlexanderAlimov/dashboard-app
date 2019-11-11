@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import { getProducts } from "../actions";
+import { getProducts, dispatchWithParams } from "../actions";
 import ProductsInfoTable from "../components/products-info-table";
 
 const mapStateToProps = state => ({
   products: state.products
 });
 const mapDispatchToProps = dispatch => ({
-  getProducts: () => dispatch(getProducts())
+  getProducts: dispatchWithParams(dispatch, getProducts)
 });
 
 export default connect(

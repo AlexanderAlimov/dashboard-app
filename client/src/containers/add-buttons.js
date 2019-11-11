@@ -1,5 +1,10 @@
 import { connect } from "react-redux";
-import { editProduct, addProduct, addCategory } from "../actions";
+import {
+  editProduct,
+  addProduct,
+  addCategory,
+  dispatchWithParams
+} from "../actions";
 import AddButton from "../components/buttons/add-btn";
 
 const mapStateToProps = state => ({
@@ -7,9 +12,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addProduct: obj => dispatch(addProduct(obj)),
-  addCategory: obj => dispatch(addCategory(obj)),
-  editProduct: obj => dispatch(editProduct(obj))
+  addProduct: dispatchWithParams(dispatch, addProduct),
+  addCategory: dispatchWithParams(dispatch, addCategory),
+  editProduct: dispatchWithParams(dispatch, editProduct)
 });
 
 export default connect(

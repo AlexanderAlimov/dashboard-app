@@ -1,6 +1,9 @@
 const handleResponse = (callback, dispatch) => ({ data, message }) =>
   dispatch(message ? isError(message) : callback(data));
 
+export const dispatchWithParams = (dispatch, callback) => obj =>
+  dispatch(callback(obj));
+
 export function addProduct(prod) {
   return dispatch => {
     dispatch(removeError());

@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import ErrorMessage from "../components/alert";
-import { removeError } from "../actions/index";
+import { removeError, dispatchWithParams } from "../actions/index";
 
 const mapStateToProps = state => ({
   error: state.errors
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeError: () => dispatch(removeError())
+  removeError: dispatchWithParams(dispatch, removeError)
 });
 
 export default connect(
