@@ -32,7 +32,7 @@ class Controller {
   getCategories(req, res, next) {
     accessDB(dB => {
       res.status(200).send({
-        categories: dB.categories
+        data: dB.categories
       });
     });
   }
@@ -47,7 +47,7 @@ class Controller {
         });
       }
       res.status(200).send({
-        products: req.query.category ? filterProducts : dB.products
+        data: req.query.category ? filterProducts : dB.products
       });
     });
   }

@@ -1,6 +1,5 @@
-const errorDispatch = (mssg, dispatch, successFunc) => {
-  mssg ? dispatch(isError(mssg)) : dispatch(successFunc);
-};
+const handleResponse = (callback, dispatch) => ({ data, message }) =>
+  dispatch(message ? isError(message) : callback(data));
 
 export function addProduct(prod) {
   return dispatch => {
@@ -13,9 +12,7 @@ export function addProduct(prod) {
       body: JSON.stringify(prod)
     })
       .then(response => response.json())
-      .then(({ data, message }) => {
-        errorDispatch(message, dispatch, addProductSync(data));
-      });
+      .then(handleResponse(addProductSync, dispatch));
   };
 }
 const addProductSync = payload => {
@@ -35,9 +32,7 @@ export function removeProduct(prodId) {
       }
     })
       .then(response => response.json())
-      .then(({ data, message }) => {
-        errorDispatch(message, dispatch, removeProductSync(data));
-      });
+      .then(handleResponse(removeProductSync, dispatch));
   };
 }
 
@@ -58,9 +53,7 @@ export function removeCategory(catId) {
       }
     })
       .then(response => response.json())
-      .then(({ data, message }) => {
-        errorDispatch(message, dispatch, removeCategorySync(data));
-      });
+      .then(handleResponse(removeCategorySync, dispatch));
   };
 }
 const removeCategorySync = id => {
@@ -81,9 +74,7 @@ export function addCategory(category) {
       body: JSON.stringify(category)
     })
       .then(response => response.json())
-      .then(({ data, message }) => {
-        errorDispatch(message, dispatch, addCategorySync(data));
-      });
+      .then(handleResponse(addCategorySync, dispatch));
   };
 }
 
@@ -105,9 +96,7 @@ export const editProduct = prod => {
       body: JSON.stringify(prod)
     })
       .then(response => response.json())
-      .then(({ data, message }) => {
-        errorDispatch(message, dispatch, editProductSync(data));
-      });
+      .then(handleResponse(editProductSync, dispatch));
   };
 };
 
@@ -121,9 +110,7 @@ export function getCategories() {
     dispatch(removeError());
     return fetch(`/api/categories`)
       .then(response => response.json())
-      .then(({ categories, message }) => {
-        errorDispatch(message, dispatch, receiveCategories(categories));
-      });
+      .then(handleResponse(receiveCategories, dispatch));
   };
 }
 
@@ -140,9 +127,7 @@ export function getProducts(catId = undefined) {
     dispatch(removeError());
     return fetch(url)
       .then(response => response.json())
-      .then(({ products, message }) => {
-        errorDispatch(message, dispatch, receiveProducts(products));
-      });
+      .then(handleResponse(receiveProducts, dispatch));
   };
 }
 
