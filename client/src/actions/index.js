@@ -1,8 +1,9 @@
-const handleResponse = (callback, dispatch) => ({ data, message }) =>
-  dispatch(message ? isError(message) : callback(data));
-
-export const dispatchWithParams = (dispatch, callback) => obj =>
-  dispatch(callback(obj));
+const handleResponse = (callback, dispatch) => ({ data, message }) => {
+  return dispatch(message ? isError(message) : callback(data));
+};
+export const dispatchWithParams = (dispatch, callback) => (obj = null) => {
+  return dispatch(callback(obj));
+};
 
 export function addProduct(prod) {
   return dispatch => {
@@ -125,6 +126,9 @@ const receiveCategories = payload => {
 };
 
 export function getProducts(catId = undefined) {
+  ////this is hot fix , need to debug properly
+  if (typeof catId === "object") catId = undefined;
+  ////////////////////////////////////////////
   const url = catId ? `/api/products/?category=${catId}` : `/api/products`;
   return dispatch => {
     dispatch(removeError());

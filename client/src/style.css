@@ -41,3 +41,7 @@
 	display:none
 }
 /*-----------------------------*/
+
+.row-table__btn-show{
+	margin-left: 4rem !important;
+}

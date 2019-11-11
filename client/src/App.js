@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 import CategoryList from "./containers/category-list";
 import AddButton from "./containers/add-buttons";
 import Logo from "./components/logo";
 import ProductsInfoTable from "./containers/product-table";
 import ErrorMessage from "./containers/alert";
+import ShowAll from "./containers/show-all";
 
 import "antd/dist/antd.css";
 import "./style.css";
@@ -26,6 +27,7 @@ function App() {
       </Row>
       <Row className="row-table">
         <Col span={6}>
+          <ShowAll title="Show All" />
           <CategoryList />
         </Col>
         <Col span={18}>
