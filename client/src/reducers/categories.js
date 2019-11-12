@@ -6,7 +6,7 @@ const categories = (state = [], action) => {
     case "ADD_CATEGORY":
       return [...state, action.payload];
     case "REMOVE_CATEGORY":
-      return state.filter(item => Number(item.id) !== Number(action.id));
+      return state.filter(item => String(item._id) !== String(action.id));
     default:
       return state;
   }

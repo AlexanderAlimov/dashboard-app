@@ -34,7 +34,7 @@ const columns = [
         <RemoveBtn
           type="danger"
           name="Delete"
-          prodId={prod.id}
+          prodId={prod._id}
           prodName={prod.name}
         />
       </Fragment>

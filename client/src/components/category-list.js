@@ -10,18 +10,17 @@ function CategoryList({
   useEffect(() => {
     getCategories();
   }, []);
-
   const category = categories.map(el => {
     const removeBtn =
       el.name === "Without Category" ? (
         <span></span>
       ) : (
-        <RemoveCategoryBtn catId={el.id} />
+        <RemoveCategoryBtn catId={el._id} />
       );
     return (
       <li key={el.id}>
         {removeBtn}
-        <Category name={el.name} onClick={getProducts} catId={Number(el.id)} />
+        <Category name={el.name} onClick={getProducts} catId={el._id} />
       </li>
     );
   });

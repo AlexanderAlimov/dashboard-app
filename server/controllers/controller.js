@@ -1,5 +1,7 @@
 import fs from "fs";
 import path from "path";
+import Product from "../models/product.model";
+import Category from "../models/category.model";
 const dirPath = path.join(__dirname, "../db/db.json");
 
 const writeToDb = (dataBase, res, item) => {
@@ -30,76 +32,86 @@ const accessDB = onSuccess => {
 
 class Controller {
   getCategories(req, res, next) {
-    accessDB(dB => {
+    Category.find((err, categories) => {
       res.status(200).send({
-        data: dB.categories
+        data: categories
       });
     });
   }
 
   getProducts(req, res, next) {
-    accessDB(dB => {
-      let filterProducts = null;
-      if (req.query.category) {
-        const id = req.query.category;
-        filterProducts = dB.products.filter(item => {
-          return Number(item.categoryId) === Number(id);
-        });
+    const id = req.query.category;
+    let filterProducts = [];
+    Product.find(function(err, products) {
+      if (err) return next(err);
+      if (id) {
+        filterProducts = products.filter(item => item.category === id);
       }
       res.status(200).send({
-        data: req.query.category ? filterProducts : dB.products
+        data: id ? filterProducts : products
       });
     });
   }
 
   addProduct(req, res, next) {
-    accessDB(dB => {
-      if (!req.body.name) {
-        return res.status(400).send({
-          message: "Name is Reuqired!"
-        });
-      }
-      const prod = {
-        id: dB.products.length + 1,
+    Category.find({ name: req.body.category }, (error, category) => {
+      if (error) console.log(error);
+      const id = category[0]._id;
+
+      let product = new Product({
         name: req.body.name,
         purchPrice: req.body.purchPrice,
         salePrice: req.body.salePrice,
-        category: req.body.category
-      };
-      dB.products.push(prod);
-      writeToDb(dB, res, prod);
+        category: id
+      });
+
+      product.save(function(err) {
+        if (err) {
+          return next(err);
+        }
+        res.status(200).send({
+          data: product
+        });
+      });
     });
   }
 
   addCategory(req, res, next) {
-    accessDB(dB => {
-      if (!req.body.name) {
-        return res.status(400).send({});
+    let category = new Category({ name: req.body.name });
+    category.save(function(err) {
+      if (err) {
+        return next(err);
       }
-      const category = {
-        id: dB.categories.length + 1,
-        name: req.body.name
-      };
-      dB.categories.push(category);
-      writeToDb(dB, res, category);
+      res.status(200).send({
+        data: category
+      });
     });
   }
 
   removeProduct(req, res, next) {
-    accessDB(dB => {
-      dB.products = dB.products.filter(item => {
-        return Number(item.id) !== Number(req.params.id);
+    // accessDB(dB => {
+    //   dB.products = dB.products.filter(item => {
+    //     return Number(item.id) !== Number(req.params.id);
+    //   });
+    //   writeToDb(dB, res, req.params.id);
+    // });
+
+    const id = req.params.id;
+    Product.findByIdAndRemove(id, (error, product) => {
+      if (error) console.log(error);
+      res.status(200).send({
+        data: product._id
       });
-      writeToDb(dB, res, req.params.id);
     });
   }
 
   removeCategory(req, res, next) {
-    accessDB(dB => {
-      dB.categories = dB.categories.filter(item => {
-        return Number(item.id) !== Number(req.params.id);
+    const id = req.params.id;
+    Category.findByIdAndRemove(id, (error, category) => {
+      if (error) console.log(error);
+      res.status(200).send({
+        data: category._id
       });
-      writeToDb(dB, res, req.params.id);
     });
   }
 

@@ -21,14 +21,7 @@
       "salePrice": 200,
       "categoryId": 2
     },
-    { "id": 4, "name": "Product4", "purchPrice": 1008, "salePrice": 2006 },
-    {
-      "id": 5,
-      "name": "Sasha Alimov",
-      "purchPrice": "1008877",
-      "salePrice": "2345",
-      "category": "Category3"
-    }
+    { "id": 4, "name": "Product4", "purchPrice": 1008, "salePrice": 2006 }
   ],
   "categories": [
     { "name": "Category1", "id": 1 },

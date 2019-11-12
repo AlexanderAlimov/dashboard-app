@@ -7,7 +7,7 @@ const products = (state = [], action) => {
       return [...state, action.payload];
 
     case "REMOVE_PRODUCT":
-      return state.filter(item => Number(item.id) !== Number(action.id));
+      return state.filter(item => String(item._id) !== String(action.id));
 
     case "REMOVE_CATEGORY":
       const productsByDelCategory = state.filter(
