@@ -24,10 +24,9 @@ const products = (state = [], action) => {
 
     case "EDIT_PRODUCT":
       return state.map(item =>
-        item.id === action.payload.id
+        item._id === action.payload._id
           ? {
               ...item,
-              id: action.payload.id,
               name: action.payload.name,
               purchPrice: Number(action.payload.purchPrice),
               salePrice: Number(action.payload.salePrice),

@@ -37,7 +37,7 @@ function AddEditProduct(props) {
   };
   const handleSubmit = e => {
     const product =
-      title === "Edit" ? { ...productValue, id: prod.id } : productValue;
+      title === "Edit" ? { ...productValue, id: prod._id } : productValue;
     e.preventDefault();
     onClick(product);
     onOk();

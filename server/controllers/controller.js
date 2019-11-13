@@ -1,38 +1,17 @@
-import fs from "fs";
-import path from "path";
 import Product from "../models/product.model";
 import Category from "../models/category.model";
-const dirPath = path.join(__dirname, "../db/db.json");
 
-const writeToDb = (dataBase, res, item) => {
-  fs.writeFile(dirPath, JSON.stringify(dataBase), (error, data) => {
-    if (error) {
-      res.status(500).send({
-        message: error
-      });
-    }
-    res.status(200).send({
-      data: item
-    });
-  });
-};
-
-const parseData = data => JSON.parse(data);
-
-const accessDB = onSuccess => {
-  fs.readFile(dirPath, (error, data) => {
-    if (error) {
-      res.status(500).send({ message: error });
-      return;
-    }
-    const dB = parseData(data);
-    onSuccess(dB);
-  });
+const ifError = (err, res) => {
+  if (err) {
+    res.status(500).send({ message: err });
+    return;
+  }
 };
 
 class Controller {
   getCategories(req, res, next) {
     Category.find((err, categories) => {
+      ifError(err, res);
       res.status(200).send({
         data: categories
       });
@@ -41,21 +20,18 @@ class Controller {
 
   getProducts(req, res, next) {
     const id = req.query.category;
-    let filterProducts = [];
-    Product.find(function(err, products) {
-      if (err) return next(err);
-      if (id) {
-        filterProducts = products.filter(item => item.category === id);
-      }
+    let category = id ? { category: id } : {};
+    Product.find(category, (err, products) => {
+      ifError(err, res);
       res.status(200).send({
-        data: id ? filterProducts : products
+        data: products
       });
     });
   }
 
   addProduct(req, res, next) {
-    Category.find({ name: req.body.category }, (error, category) => {
-      if (error) console.log(error);
+    Category.find({ name: req.body.category }, (err, category) => {
+      ifError(err, res);
       const id = category[0]._id;
 
       let product = new Product({
@@ -65,10 +41,8 @@ class Controller {
         category: id
       });
 
-      product.save(function(err) {
-        if (err) {
-          return next(err);
-        }
+      product.save(err => {
+        ifError(err, res);
         res.status(200).send({
           data: product
         });
@@ -78,10 +52,8 @@ class Controller {
 
   addCategory(req, res, next) {
     let category = new Category({ name: req.body.name });
-    category.save(function(err) {
-      if (err) {
-        return next(err);
-      }
+    category.save(err => {
+      ifError(err, res);
       res.status(200).send({
         data: category
       });
@@ -89,16 +61,9 @@ class Controller {
   }
 
   removeProduct(req, res, next) {
-    // accessDB(dB => {
-    //   dB.products = dB.products.filter(item => {
-    //     return Number(item.id) !== Number(req.params.id);
-    //   });
-    //   writeToDb(dB, res, req.params.id);
-    // });
-
     const id = req.params.id;
-    Product.findByIdAndRemove(id, (error, product) => {
-      if (error) console.log(error);
+    Product.findByIdAndRemove(id, (err, product) => {
+      ifError(err, res);
       res.status(200).send({
         data: product._id
       });
@@ -107,8 +72,20 @@ class Controller {
 
   removeCategory(req, res, next) {
     const id = req.params.id;
-    Category.findByIdAndRemove(id, (error, category) => {
-      if (error) console.log(error);
+    let categoryId;
+    Category.findByIdAndRemove(id, (err, category) => {
+      ifError(err, res);
+      Category.find({ name: "Without Category" }, (err, category) => {
+        ifError(err, res);
+        categoryId = category[0]._id;
+        Product.find({ category: id }, (err, products) => {
+          ifError(err, res);
+          products.forEach(product => {
+            product.category = categoryId;
+            product.save();
+          });
+        });
+      });
       res.status(200).send({
         data: category._id
       });
@@ -116,20 +93,25 @@ class Controller {
   }
 
   editProduct(req, res, next) {
-    accessDB(dB => {
-      const prodId = req.params.id;
-      const prodIndex = dB.products.findIndex(item =>
-        Number(item.id === Number(prodId))
-      );
-      const editedProduct = {
-        id: Number(prodId),
-        name: req.body.name,
-        category: req.body.category,
-        purchPrice: Number(req.body.purchPrice),
-        salePrice: Number(req.body.salePrice)
-      };
-      dB.products.splice(prodIndex, 1, editedProduct);
-      writeToDb(dB, res, editedProduct);
+    const name = req.body.name,
+      category = req.body.category,
+      purchPrice = Number(req.body.purchPrice),
+      salePrice = Number(req.body.salePrice);
+
+    Category.find({ name: category }, (err, category) => {
+      ifError(err);
+      const categoryId = category[0]._id;
+      Product.find({ _id: req.params.id }, (err, product) => {
+        ifError(err, res);
+        product[0].name = name;
+        product[0].purchPrice = purchPrice;
+        product[0].salePrice = salePrice;
+        product[0].category = categoryId;
+        product[0].save();
+        res.status(200).send({
+          data: product[0]
+        });
+      });
     });
   }
 }
