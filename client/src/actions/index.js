@@ -1,5 +1,5 @@
 const handleResponse = (callback, dispatch) => ({ data, message }) => {
-  return dispatch(message ? isError(message) : callback(data));
+  return dispatch(message ? isError(message.message) : callback(data));
 };
 export const dispatchWithParams = (dispatch, callback) => (obj = null) => {
   return dispatch(callback(obj));

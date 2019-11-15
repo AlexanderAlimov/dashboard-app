@@ -13,6 +13,7 @@ function AddButton(props) {
   const handleHideModal = () => {
     setInvisible(false);
   };
+
   const {
     addCategory,
     addProduct,
@@ -21,12 +22,14 @@ function AddButton(props) {
     categories,
     product
   } = props;
+
   const onClick =
     title === "Add Category"
       ? addCategory
       : title === "Edit"
       ? editProduct
       : addProduct;
+
   const addForm =
     title === "Add Category" ? (
       <AddCategory onOk={handleHideModal} title={title} onClick={onClick} />
@@ -39,7 +42,9 @@ function AddButton(props) {
         prod={product}
       />
     );
+
   const classNameBtn = title === "Edit" ? "ant-btn__width" : "col-btn";
+
   return (
     <Fragment>
       <Button className={classNameBtn} onClick={showModal}>

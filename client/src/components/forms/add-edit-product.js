@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Select, Input, Button, Form } from "antd";
-
-const { Option } = Select;
+import { Input, Button, Form } from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -16,10 +14,23 @@ const formItemLayout = {
 
 function AddEditProduct(props) {
   const { onOk, onClick, categories, title, prod } = props;
+
+  const categNameEditBtn = () => {
+    let name1;
+    if (title === "Edit") {
+      categories.forEach(item => {
+        if (item._id == prod.category) {
+          name1 = item.name;
+        }
+      });
+    }
+    return name1;
+  };
+
   const name = title === "Edit" ? prod.name : "";
   const purchPrice = title === "Edit" ? prod.purchPrice : "";
   const salePrice = title === "Edit" ? prod.salePrice : "";
-  const category = title === "Edit" ? prod.category : "";
+  const category = title === "Edit" ? categNameEditBtn() : categories[0].name;
 
   const [productValue, setInputValue] = useState({
     name: name,
@@ -38,15 +49,15 @@ function AddEditProduct(props) {
   const handleSubmit = e => {
     const product =
       title === "Edit" ? { ...productValue, id: prod._id } : productValue;
+
     e.preventDefault();
     onClick(product);
     onOk();
     setInputValue("");
   };
-
   const arrCategories = categories.map(el => {
     return (
-      <option key={el.id} value={el.name}>
+      <option key={el.id} value={el._id}>
         {el.name}
       </option>
     );

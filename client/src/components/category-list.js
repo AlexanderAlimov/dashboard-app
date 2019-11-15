@@ -18,7 +18,7 @@ function CategoryList({
         <RemoveCategoryBtn catId={el._id} />
       );
     return (
-      <li key={el.id}>
+      <li key={el._id}>
         {removeBtn}
         <Category name={el.name} onClick={getProducts} catId={el._id} />
       </li>

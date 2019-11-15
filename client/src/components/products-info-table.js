@@ -4,11 +4,6 @@ import RemoveBtn from "../containers/remove-product";
 import AddButton from "../containers/add-buttons";
 
 const columns = [
-  // {
-  //   title: "Id",
-  //   dataIndex: "id",
-  //   key: "id"
-  // },
   {
     title: "Product Name",
     dataIndex: "name",
