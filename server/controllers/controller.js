@@ -22,7 +22,7 @@ class Controller {
   }
 
   addProduct(req, res, next) {
-    Category.find({ name: req.body.category })
+    Category.find({ _id: req.body.category })
       .then(data => {
         const id = data[0]._id;
         let product = new Product({
