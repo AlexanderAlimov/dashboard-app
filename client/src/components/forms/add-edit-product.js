@@ -16,21 +16,21 @@ function AddEditProduct(props) {
   const { onOk, onClick, categories, title, prod } = props;
 
   const categNameEditBtn = () => {
-    let name1;
+    let categoryId;
     if (title === "Edit") {
       categories.forEach(item => {
-        if (item._id == prod.category) {
-          name1 = item.name;
+        if (item._id === prod.category) {
+          categoryId = item._id;
         }
       });
     }
-    return name1;
+    return categoryId;
   };
 
   const name = title === "Edit" ? prod.name : "";
   const purchPrice = title === "Edit" ? prod.purchPrice : "";
   const salePrice = title === "Edit" ? prod.salePrice : "";
-  const category = title === "Edit" ? categNameEditBtn() : categories[0].name;
+  const category = title === "Edit" ? categNameEditBtn() : categories[0]._id;
 
   const [productValue, setInputValue] = useState({
     name: name,
@@ -38,6 +38,7 @@ function AddEditProduct(props) {
     salePrice: salePrice,
     category: category
   });
+
   const handleChange = e => {
     const target = e.target ? e.target : e;
     const { value, name } = target;
@@ -49,7 +50,6 @@ function AddEditProduct(props) {
   const handleSubmit = e => {
     const product =
       title === "Edit" ? { ...productValue, id: prod._id } : productValue;
-
     e.preventDefault();
     onClick(product);
     onOk();
@@ -57,7 +57,7 @@ function AddEditProduct(props) {
   };
   const arrCategories = categories.map(el => {
     return (
-      <option key={el.id} value={el._id}>
+      <option key={el._id} value={el._id}>
         {el.name}
       </option>
     );
