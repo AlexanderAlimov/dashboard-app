@@ -22,17 +22,15 @@ class Controller {
   }
 
   addProduct(req, res, next) {
-    Category.find({ _id: req.body.category })
-      .then(data => {
-        const id = data[0]._id;
-        let product = new Product({
-          name: req.body.name,
-          purchPrice: req.body.purchPrice,
-          salePrice: req.body.salePrice,
-          category: id
-        });
-        return product.save();
-      })
+    const { name, purchPrice, salePrice, category } = req.body;
+    let product = new Product({
+      name: name,
+      purchPrice: purchPrice,
+      salePrice: salePrice,
+      category: category
+    });
+    product
+      .save()
       .then(handleSuccess(res))
       .catch(handleError(res));
   }
@@ -48,6 +46,9 @@ class Controller {
   removeProduct(req, res, next) {
     const id = req.params.id;
     Product.findByIdAndRemove(id)
+      .then(result => {
+        return result._id;
+      })
       .then(handleSuccess(res))
       .catch(handleError(res));
   }
@@ -55,13 +56,16 @@ class Controller {
   removeCategory(req, res, next) {
     const id = req.params.id;
     let categoryId;
-    Category.find({ name: "Without Category" })
+    Category.findOne({ name: "Without Category" })
       .then(category => {
-        categoryId = category[0]._id;
+        categoryId = category._id;
         return Product.updateMany({ category: id }, { category: categoryId });
       })
       .then(result => {
         return Category.findByIdAndRemove(id);
+      })
+      .then(result => {
+        return result._id;
       })
       .then(handleSuccess(res))
       .catch(handleError(res));
@@ -69,18 +73,13 @@ class Controller {
 
   editProduct(req, res, next) {
     const { name, category, purchPrice, salePrice } = req.body;
-    let categoryId;
-    Category.find({ name: category })
-      .then(category => {
-        categoryId = category[0]._id;
-        return Product.find({ _id: req.params.id });
-      })
+    Product.findOne({ _id: req.params.id })
       .then(item => {
-        const product = item[0];
+        const product = item;
         product.name = name;
         product.purchPrice = Number(purchPrice);
         product.salePrice = Number(salePrice);
-        product.category = categoryId;
+        product.category = category;
         return product.save();
       })
       .then(handleSuccess(res))
