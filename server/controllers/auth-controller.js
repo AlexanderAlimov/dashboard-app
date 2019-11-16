@@ -1,34 +1,40 @@
 import User from "../models/user.model";
+import passport from "passport";
 
 class AuthController {
   login(req, res, next) {
-    User.find({ name: req.body.name })
-      .then(user => {
-        if (!user.length) {
-          throw "Wrong Email or password!";
+    passport.authenticate("local", (err, user) => {
+      if (err) {
+        return res.status(500).send({ message: err });
+      }
+      if (!user) {
+        return res.status(500).send({ message: err });
+      }
+      req.logIn(user, err => {
+        if (err) {
+          return res.status(500).send({ message: err });
         }
-        res.status(200).send({ data: user });
-      })
-      .catch(err => {
-        if (err) res.status(500).send({ data: err });
+        return res.status(200).send({ data: user });
       });
+    })(req, res, next);
   }
+
   register(req, res, next) {
-    const user = new User({
-      name: req.body.name,
-      password: req.body.password
-    });
-    user
-      .save()
-      .then(result => {
-        res.status(200).send({ data: result });
+    const { username, password } = req.body;
+    User.create({ username, password })
+      .then(user => {
+        req.login(user, err => {
+          if (err) next(err);
+          else res.status(200).send({ message: "Success Register" });
+        });
       })
       .catch(err => {
-        if (err) res.status(500).send({ data: err });
+        if (err.name === "ValidationError") {
+          res.status(500).send({ message: err.name });
+        } else next(err);
       });
   }
 }
-
 const authController = new AuthController();
 
 export default authController;
