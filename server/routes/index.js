@@ -22,4 +22,6 @@ router.post("/api/login", authController.login);
 
 router.post("/api/register", authController.register);
 
+router.get("/api/logout", authController.logout);
+
 export default router;

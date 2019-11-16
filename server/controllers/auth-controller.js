@@ -34,6 +34,11 @@ class AuthController {
         } else next(err);
       });
   }
+
+  logout(req, res, next) {
+    req.logout();
+    res.status(200).send({ message: "logout" });
+  }
 }
 const authController = new AuthController();
 
