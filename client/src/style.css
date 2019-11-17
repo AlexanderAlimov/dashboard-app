@@ -10,7 +10,7 @@
 	padding: 70px;
 }
 .col-btn{
-	width: 200px;
+	width: 160px;
 	margin-right: 15px;
 }
 .col-category-list{
@@ -21,13 +21,13 @@
 }
 
 .my-app__logo{
-	border: 1px solid grey;
-	border-radius: 30px;
-	width: 150px;
-	height: 74px;
-	padding: 19px;
+	width: 134px;
+	height: 63px;
 	text-align: center;
-	font-size: 1.3rem;;
+	font-size: 1rem;
+	color: white;
+	display: inline-block;
+	margin-right: 43rem;
 }
 
 .btn-remove__categ{
@@ -44,4 +44,16 @@
 
 .row-table__btn-show{
 	margin-left: 4rem !important;
+}
+
+.header{
+	position: fixed; 
+	z-index: 1;
+	width: 100%
+}
+
+.content{
+	padding: 0 50px;
+	 margin-top: 64px; 
+	 height: 100vh;
 }

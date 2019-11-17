@@ -12,17 +12,22 @@ const formItemLayout = {
   }
 };
 
-function AddCategory({ onOk, onClick }) {
-  const [categoryValue, setInputValue] = useState("");
+function AuthForm({ onOk, onClick }) {
+  const [authValue, setInputValue] = useState("");
 
   const handleChange = e => {
-    setInputValue(e.target.value);
+    const target = e.target ? e.target : e;
+    const { value, name } = target;
+    setInputValue({
+      ...authValue,
+      [name]: value
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onClick({ name: categoryValue });
     onOk();
+    onClick(authValue);
     setInputValue("");
   };
 
@@ -30,18 +35,27 @@ function AddCategory({ onOk, onClick }) {
     <Form {...formItemLayout} onSubmit={handleSubmit}>
       <Form.Item label="Name" hasFeedback>
         <Input
-          placeholder="Name"
+          placeholder="username"
           onChange={handleChange}
-          value={categoryValue}
+          value={authValue.username}
+          name="username"
         />
       </Form.Item>
 
+      <Form.Item label="Password" hasFeedback>
+        <Input
+          placeholder="password"
+          onChange={handleChange}
+          value={authValue.password}
+          name="password"
+        />
+      </Form.Item>
       <Form.Item wrapperCol={{ span: 16, offset: 10 }}>
         <Button type="primary" htmlType="submit">
-          Add Category
+          Submit
         </Button>
       </Form.Item>
     </Form>
   );
 }
-export default AddCategory;
+export default AuthForm;

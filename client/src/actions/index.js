@@ -5,6 +5,30 @@ export const dispatchWithParams = (dispatch, callback) => (obj = null) => {
   return dispatch(callback(obj));
 };
 
+export function logIn(auth) {
+  return dispatch => {
+    dispatch(removeError());
+    return fetch(`/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify(auth)
+    })
+      .then(response => response.json())
+      .then(result => console.log(result));
+  };
+}
+
+export function logOut() {
+  return dispatch => {
+    dispatch(removeError());
+    return fetch(`/api/logout`)
+      .then(response => response.json())
+      .then(result => console.log(result));
+  };
+}
+
 export function addProduct(prod) {
   return dispatch => {
     dispatch(removeError());

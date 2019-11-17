@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { Table, Divider } from "antd";
 import RemoveBtn from "../containers/remove-product";
-import AddButton from "../containers/add-buttons";
+import AddButton from "../containers/add-btn";
 
 const columns = [
   {
