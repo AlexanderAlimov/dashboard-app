@@ -1,22 +1,28 @@
 import express from "express";
-import controller from "../controllers/controller";
-import authController from "../controllers/auth-controller";
+import productController from "../controllers/product-ctrl";
+import authController from "../controllers/auth-ctrl";
+import categoryController from "../controllers/category-ctrl";
+import { isloggedIn } from "../utils/utils";
 
 const router = express.Router();
 
-router.get("/api/categories", controller.getCategories);
+router.get("/api/categories", isloggedIn, categoryController.getCategories);
 
-router.get("/api/products", controller.getProducts);
+router.get("/api/products", isloggedIn, productController.getProducts);
 
-router.post("/api/products", controller.addProduct);
+router.post("/api/products", isloggedIn, productController.addProduct);
 
-router.post("/api/categories", controller.addCategory);
+router.post("/api/categories", isloggedIn, categoryController.addCategory);
 
-router.delete("/api/products/:id", controller.removeProduct);
+router.delete("/api/products/:id", isloggedIn, productController.removeProduct);
 
-router.delete("/api/categories/:id", controller.removeCategory);
+router.delete(
+  "/api/categories/:id",
+  isloggedIn,
+  categoryController.removeCategory
+);
 
-router.put("/api/products/:id", controller.editProduct);
+router.put("/api/products/:id", isloggedIn, productController.editProduct);
 
 router.post("/api/login", authController.login);
 

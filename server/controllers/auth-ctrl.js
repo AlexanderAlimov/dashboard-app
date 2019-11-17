@@ -1,26 +1,19 @@
 import User from "../models/user.model";
 import passport from "passport";
+import { passportCustomCallback, handleError } from "../utils/utils";
 
 class AuthController {
   login(req, res, next) {
-    passport.authenticate("local", (err, user) => {
-      if (err) {
-        return res.status(500).send({ message: err });
-      }
-      if (!user) {
-        return res.status(500).send({ message: err });
-      }
-      req.logIn(user, err => {
-        if (err) {
-          return res.status(500).send({ message: err });
-        }
-        return res.status(200).send({ data: user });
-      });
-    })(req, res, next);
+    passport.authenticate("local", passportCustomCallback(req, res, next))(
+      req,
+      res,
+      next
+    );
   }
 
   register(req, res, next) {
     const { username, password } = req.body;
+
     User.create({ username, password })
       .then(user => {
         req.login(user, err => {
@@ -29,9 +22,7 @@ class AuthController {
         });
       })
       .catch(err => {
-        if (err.name === "ValidationError") {
-          res.status(500).send({ message: err.name });
-        } else next(err);
+        handleError(res);
       });
   }
 
