@@ -6,9 +6,9 @@ import { isloggedIn } from "../utils/utils";
 
 const router = express.Router();
 
-router.get("/api/categories", isloggedIn, categoryController.getCategories);
+router.get("/api/categories", categoryController.getCategories);
 
-router.get("/api/products", isloggedIn, productController.getProducts);
+router.get("/api/products", productController.getProducts);
 
 router.post("/api/products", isloggedIn, productController.addProduct);
 

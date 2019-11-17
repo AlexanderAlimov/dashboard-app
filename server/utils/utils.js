@@ -21,7 +21,10 @@ const handleSuccess = res => items => res.status(200).send({ data: items });
 
 const isloggedIn = (req, res, next) => {
   if (req.isAuthenticated()) next();
-  else res.status(500).send({ message: "You should loggin at first" });
+  else
+    res
+      .status(500)
+      .send({ message: { message: "You should loggin at first" } });
 };
 
 export { passportCustomCallback, handleError, handleSuccess, isloggedIn };
