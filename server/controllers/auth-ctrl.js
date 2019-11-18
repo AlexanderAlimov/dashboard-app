@@ -21,9 +21,7 @@ class AuthController {
           else res.status(200).send({ message: "Success Register" });
         });
       })
-      .catch(err => {
-        handleError(res);
-      });
+      .catch(handleError(res));
   }
 
   logout(req, res, next) {

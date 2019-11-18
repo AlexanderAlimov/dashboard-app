@@ -1,5 +1,4 @@
 import Product from "../models/product.model";
-import Category from "../models/category.model";
 import { handleError, handleSuccess } from "../utils/utils";
 
 class ProductController {

@@ -25,12 +25,10 @@ class CategoryController {
         categoryId = category._id;
         return Product.updateMany({ category: id }, { category: categoryId });
       })
-      .then(result => {
+      .then(() => {
         return Category.findByIdAndRemove(id);
       })
-      .then(result => {
-        return result._id;
-      })
+      .then(({ _id }) => _id)
       .then(handleSuccess(res))
       .catch(handleError(res));
   }
