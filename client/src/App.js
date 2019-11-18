@@ -18,8 +18,10 @@ function App() {
     <Layout>
       <Header className="header">
         <Logo />
-        <AuthBtn title="Login" />
-        <AuthBtn title="Logout" />
+        <div>
+          <AuthBtn title="Login" />
+          <AuthBtn title="Logout" />
+        </div>
       </Header>
       <Content className="content">
         <Row>
