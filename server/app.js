@@ -1,4 +1,5 @@
 import express from "express";
+import path from 'path';
 import bodyParser from "body-parser";
 import router from "./routes/index.js";
 import mongoose from "mongoose";
@@ -24,6 +25,9 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
+///static path
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,6 +37,11 @@ app.use(session({ secret: "Cat name Varvara" }));
 app.use(express.urlencoded({ extended: true })); // express body-parser
 app.use(passport.initialize());
 app.use(passport.session());
+
+////send index.html production version
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 //use router
 app.use(router);
