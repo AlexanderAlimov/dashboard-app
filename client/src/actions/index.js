@@ -1,6 +1,5 @@
-const handleResponse = (callback, dispatch) => ({ data, message }) => {
-  return dispatch(message ? isError(message.message) : callback(data));
-};
+const handleResponse = (callback, dispatch) => ({ data, message }) =>
+  dispatch(message ? isError(message.message) : callback(data));
 export const dispatchWithParams = (dispatch, callback) => (obj = null) => {
   return dispatch(callback(obj));
 };
@@ -135,9 +134,13 @@ export const editProductSync = payload => ({
 
 export function getCategories() {
   return dispatch => {
+    dispatch(isLoading(true));
     dispatch(removeError());
     return fetch(`/api/categories`)
-      .then(response => response.json())
+      .then(response => {
+        dispatch(isLoading(false));
+        return response.json();
+      })
       .then(handleResponse(receiveCategories, dispatch));
   };
 }
@@ -156,8 +159,12 @@ export function getProducts(catId = undefined) {
   const url = catId ? `/api/products/?category=${catId}` : `/api/products`;
   return dispatch => {
     dispatch(removeError());
+    dispatch(isLoading(true));
     return fetch(url)
-      .then(response => response.json())
+      .then(response => {
+        dispatch(isLoading(false));
+        return response.json();
+      })
       .then(handleResponse(receiveProducts, dispatch));
   };
 }
@@ -179,5 +186,12 @@ const isError = payload => {
 export const removeError = () => {
   return {
     type: "REMOVE_ERROR"
+  };
+};
+
+const isLoading = payload => {
+  return {
+    type: "IS_LOADING",
+    payload
   };
 };

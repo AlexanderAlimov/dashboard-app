@@ -7,6 +7,7 @@ import ProductsInfoTable from "./containers/product-table";
 import ErrorMessage from "./containers/alert";
 import ShowAll from "./containers/show-all";
 import AuthBtn from "./containers/auth-btn";
+import Spiner from "./containers/spiner";
 
 import "antd/dist/antd.css";
 import "./style.css";
@@ -35,11 +36,12 @@ function App() {
           </Col>
         </Row>
         <Row className="row-table">
-          <Col span={6}>
+          <Col span={6} className="col-position">
+            <Spiner belongs="categ-list" />
             <ShowAll title="Show All" />
             <CategoryList />
           </Col>
-          <Col span={18}>
+          <Col span={18} className="col-position">
             <ProductsInfoTable />
           </Col>
         </Row>

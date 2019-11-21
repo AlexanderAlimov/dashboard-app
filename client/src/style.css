@@ -59,3 +59,23 @@
 	 margin-top: 64px; 
 	 height: 100vh;
 }
+
+.prod-position{
+	position: absolute;
+	top: 6.5rem;
+	left: 25rem;
+	z-index: 100;
+}
+
+.col-position{
+	position: relative;
+}
+
+.categ-position{
+	position: absolute;
+	z-index: 100;
+	left: 6rem;
+	top: 6.5rem;
+}
+
+

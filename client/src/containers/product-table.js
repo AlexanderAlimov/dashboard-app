@@ -3,7 +3,8 @@ import { getProducts, dispatchWithParams } from "../actions";
 import ProductsInfoTable from "../components/products-info-table";
 
 const mapStateToProps = state => ({
-  products: state.products
+  products: state.products,
+  loading: state.loading
 });
 const mapDispatchToProps = dispatch => ({
   getProducts: dispatchWithParams(dispatch, getProducts)
