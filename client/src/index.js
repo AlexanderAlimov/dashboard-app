@@ -6,6 +6,7 @@ import { render } from "react-dom";
 import rootReducer from "./reducers";
 import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
+import LoginForm from "./components/forms/login-form";
 
 const loggerMiddleware = createLogger();
 
@@ -16,7 +17,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <App />
+    <LoginForm className="login-form" />
   </Provider>,
   document.getElementById("root")
 );
