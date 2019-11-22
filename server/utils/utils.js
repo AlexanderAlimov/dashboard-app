@@ -3,7 +3,7 @@ const passportCustomCallback = (req, res, next) => (err, user) => {
     return res.status(500).send({ message: err });
   }
   if (!user) {
-    return res.status(500).send({ message: err });
+    return res.status(500).send({ message: "There is no such user!" });
   }
   req.logIn(user, err => {
     if (err) {

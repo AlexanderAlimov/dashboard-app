@@ -1,5 +1,5 @@
 import express from "express";
-import path from 'path';
+import path from "path";
 import bodyParser from "body-parser";
 import router from "./routes/index.js";
 import mongoose from "mongoose";
@@ -26,7 +26,7 @@ let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 ///static path
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 // Parse incoming requests data
 app.use(bodyParser.json());
@@ -39,8 +39,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 ////send index.html production version
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 //use router

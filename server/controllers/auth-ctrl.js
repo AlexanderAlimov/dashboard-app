@@ -26,7 +26,7 @@ class AuthController {
 
   logout(req, res, next) {
     req.logout();
-    res.status(200).send({ message: "logout" });
+    res.status(200).send({ data: "logout" });
   }
 }
 const authController = new AuthController();
