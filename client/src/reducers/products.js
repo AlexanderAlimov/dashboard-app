@@ -1,7 +1,7 @@
 const products = (state = [], action) => {
   switch (action.type) {
     case "RECEIVE_PRODUCTS":
-      return [...action.payload];
+      return action.payload;
 
     case "ADD_PRODUCT":
       return [...state, action.payload];

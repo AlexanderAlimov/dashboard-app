@@ -25,7 +25,7 @@ function NormalLoginForm(props) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="login-form">
+    <Form onSubmit={handleSubmit}>
       <h1>Sign In</h1>
       <Form.Item>
         <Input

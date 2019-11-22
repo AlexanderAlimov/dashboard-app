@@ -7,12 +7,14 @@ function MainComponent({ isLogin, login }) {
   const displayComponent = isLogin ? (
     <Dashboard />
   ) : (
-    <Fragment>
-      <ErrorMessage />
-      <LoginForm onClick={login} className="login-form" />
-    </Fragment>
+    <div className="login-form__with-error">
+      <div className="login-form__error-message">
+        <ErrorMessage />
+      </div>
+      <LoginForm onClick={login} />
+    </div>
   );
-  return <Fragment>{displayComponent}</Fragment>;
+  return displayComponent;
 }
 
 export default MainComponent;
