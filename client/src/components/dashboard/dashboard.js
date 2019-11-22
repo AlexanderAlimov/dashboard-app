@@ -1,16 +1,16 @@
 import React from "react";
 import { Row, Col, Layout, Button } from "antd";
-import CategoryList from "./containers/category-list";
-import AddButton from "./containers/add-btn";
-import Logo from "./components/logo";
-import ProductsInfoTable from "./containers/product-table";
-import ErrorMessage from "./containers/alert";
-import ShowAll from "./containers/show-all";
-import AuthBtn from "./containers/auth-btn";
-import Spiner from "./containers/spiner";
+import CategoryList from "../../containers/category-list";
+import AddButton from "../../containers/add-btn";
+import Logo from "../logo";
+import ProductsInfoTable from "../../containers/product-table";
+import ErrorMessage from "../../containers/alert";
+import ShowAll from "../../containers/show-all";
+import AuthBtn from "../../containers/auth-btn";
+import Spiner from "../../containers/spiner";
 
 import "antd/dist/antd.css";
-import "./style.css";
+import "../../style.css";
 
 const { Header, Content } = Layout;
 

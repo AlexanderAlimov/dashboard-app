@@ -15,7 +15,12 @@ export function logIn(auth) {
       body: JSON.stringify(auth)
     })
       .then(response => response.json())
-      .then(result => console.log(result));
+      .then(result => {
+        console.log(result);
+        if (result.data) {
+          dispatch(isLoginSync(true));
+        }
+      });
   };
 }
 
@@ -24,9 +29,19 @@ export function logOut() {
     dispatch(removeError());
     return fetch(`/api/logout`)
       .then(response => response.json())
-      .then(result => console.log(result));
+      .then(result => {
+        console.log(result);
+        dispatch(isLoginSync(false));
+      });
   };
 }
+
+const isLoginSync = payload => {
+  return {
+    type: "IS_LOGIN",
+    payload
+  };
+};
 
 export function addProduct(prod) {
   return dispatch => {

@@ -1,12 +1,12 @@
 import React from "react";
-import App from "./App";
+import App from "./components/dashboard/dashboard";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { render } from "react-dom";
 import rootReducer from "./reducers";
 import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
-import LoginForm from "./components/forms/login-form";
+import MainComponent from "./containers/main-container";
 
 const loggerMiddleware = createLogger();
 
@@ -17,7 +17,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <LoginForm className="login-form" />
+    <MainComponent />
   </Provider>,
   document.getElementById("root")
 );
