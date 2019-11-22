@@ -20,7 +20,6 @@ function App() {
       <Header className="header">
         <Logo />
         <div>
-          <AuthBtn title="Login" />
           <AuthBtn title="Logout" />
         </div>
       </Header>

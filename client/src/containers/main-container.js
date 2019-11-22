@@ -3,7 +3,7 @@ import MainComponent from "../components/main-component";
 import { logIn, dispatchWithParams } from "../actions/index";
 
 const mapStateToProps = state => ({
-  isLogin: state.isLogin
+  isLogin: state.user.isLoggedIn
 });
 
 const mapDispatchToProps = dispatch => ({

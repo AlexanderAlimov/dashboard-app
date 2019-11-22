@@ -16,6 +16,7 @@ export function logIn(auth) {
     })
       .then(response => response.json())
       .then(result => {
+        console.log(44444444);
         console.log(result);
         if (result.data) {
           dispatch(isLoginSync(true));
@@ -30,6 +31,7 @@ export function logOut() {
     return fetch(`/api/logout`)
       .then(response => response.json())
       .then(result => {
+        console.log(55555555555);
         console.log(result);
         dispatch(isLoginSync(false));
       });
