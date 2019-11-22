@@ -1,6 +1,6 @@
 React Dashboar this is admin panel with categories and product.
 Admin can add/delete/update categories or products.
-Each products belongs to one category. If category is deleted all products from category replase to "Without Category"
+Each product belongs to one category. If category is deleted all products from category replace to "Without Category"
 To have CRUD oportunity admin must sign in.
 
 React Dashboard is using:
