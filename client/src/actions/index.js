@@ -1,5 +1,7 @@
+const handleLogin = (callback, dispatch) => ({ message }) =>
+  dispatch(message ? isError(message) : callback);
 const handleResponse = (callback, dispatch) => ({ data, message }) =>
-  dispatch(message ? isError(message.message) : callback(data));
+  dispatch(message ? isError(message) : callback(data));
 export const dispatchWithParams = (dispatch, callback) => (obj = null) => {
   return dispatch(callback(obj));
 };
@@ -15,13 +17,7 @@ export function logIn(auth) {
       body: JSON.stringify(auth)
     })
       .then(response => response.json())
-      .then(result => {
-        console.log(44444444);
-        console.log(result);
-        if (result.data) {
-          dispatch(isLoginSync(true));
-        }
-      });
+      .then(handleLogin(isLoginSync(true), dispatch));
   };
 }
 
@@ -30,11 +26,7 @@ export function logOut() {
     dispatch(removeError());
     return fetch(`/api/logout`)
       .then(response => response.json())
-      .then(result => {
-        console.log(55555555555);
-        console.log(result);
-        dispatch(isLoginSync(false));
-      });
+      .then(handleLogin(isLoginSync(false), dispatch));
   };
 }
 

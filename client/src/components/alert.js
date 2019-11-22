@@ -12,6 +12,7 @@ function ErrorMessage({ error, removeError }) {
           type="error"
           closable
           afterClose={removeError}
+          className="error-message__login"
         />
       ) : null}
     </Fragment>

@@ -19,7 +19,7 @@ const user = (state = initialState, action) => {
     case "IS_ERROR":
       return {
         ...state,
-        error: [...action.payload]
+        error: [action.payload]
       };
     case "REMOVE_ERROR":
       return {

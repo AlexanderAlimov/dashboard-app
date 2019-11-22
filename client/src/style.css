@@ -84,4 +84,8 @@
 	text-align: center;
 }
 
+.error-message__login{
+	width: 20rem;
+	margin: 1rem auto;
+}
 
