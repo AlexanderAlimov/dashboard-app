@@ -36,3 +36,13 @@ Server:
 3. then docker run -p 5000:5000 -d "your app name"
 4. open app on localhost:5000
 
+### Demo page
+
+##### sign in page
+
+![signin](https://user-images.githubusercontent.com/28669437/69481762-bbbfbe00-0e1c-11ea-9baf-aed1111ea847.png)
+
+login : admin
+password : admin
+
+##### dashpord page
