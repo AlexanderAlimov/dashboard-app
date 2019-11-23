@@ -1,5 +1,4 @@
 ## React Dashboard
--
 
 This is admin panel with categories and products.
 
@@ -13,7 +12,6 @@ This is admin panel with categories and products.
 
 
 #### React Dashboard is using:
--
 
 Client:
 
@@ -32,7 +30,6 @@ Server:
 3. Passport (auth)
 
 #### To run project:
--
 
 1. clone mkdevReactApp
 2. use command docker build -t "your app name" .
