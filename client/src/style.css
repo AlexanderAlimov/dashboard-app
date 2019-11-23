@@ -78,6 +78,10 @@
 	top: 6.5rem;
 }
 
+.login-form{
+	width: 20rem;
+}
+
 .login-form__error-message{
 	height: 5rem;
 }
@@ -88,5 +92,9 @@
 	text-align: center;
 	height: 30rem;
 	padding: 1rem;
+}
+
+.login-form-button{
+	width: 100%;
 }
 

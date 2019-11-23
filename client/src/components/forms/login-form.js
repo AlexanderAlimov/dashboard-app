@@ -25,7 +25,7 @@ function NormalLoginForm(props) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="login-form">
       <h1>Sign In</h1>
       <Form.Item>
         <Input
@@ -43,6 +43,7 @@ function NormalLoginForm(props) {
           onChange={handleChange}
           value={authValue.password}
           name="password"
+          type="password"
         />
       </Form.Item>
       <Form.Item>
