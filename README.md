@@ -43,6 +43,9 @@ Server:
 ![signin](https://user-images.githubusercontent.com/28669437/69481762-bbbfbe00-0e1c-11ea-9baf-aed1111ea847.png)
 
 login : admin
+
 password : admin
 
 ##### dashpord page
+
+![dashboard](https://user-images.githubusercontent.com/28669437/69481820-591af200-0e1d-11ea-8216-a839ed9f89d6.png)
