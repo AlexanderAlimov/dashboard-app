@@ -1,5 +1,6 @@
-React Dashboard
+## React Dashboard
 -
+
 This is admin panel with categories and products.
 
 - Admin can add/delete/update categories or products.
@@ -11,7 +12,7 @@ This is admin panel with categories and products.
 - To have CRUD oportunity admin must sign in.
 
 
-React Dashboard is using:
+#### React Dashboard is using:
 -
 
 Client:
@@ -30,8 +31,9 @@ Server:
 
 3. Passport (auth)
 
-To run project:
+#### To run project:
 -
+
 1. clone mkdevReactApp
 2. use command docker build -t "your app name" .
 3. then docker run -p 5000:5000 -d "your app name"
