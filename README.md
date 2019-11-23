@@ -30,5 +30,10 @@ Server:
 
 3. Passport (auth)
 
-
+To run project:
+-
+1. clone mkdevReactApp
+2. use command docker build -t "your app name" .
+3. then docker run -p 5000:5000 -d "your app name"
+4. open app on localhost:5000
 
