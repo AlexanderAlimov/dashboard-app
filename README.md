@@ -1,4 +1,4 @@
-##React Dashboar
+##React Dashboard
 -
 This is admin panel with categories and products.
 -Admin can add/delete/update categories or products.
