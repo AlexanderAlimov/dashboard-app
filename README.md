@@ -7,14 +7,13 @@ This is admin panel with categories and products.
 -To have CRUD oportunity admin must sign in.
 
 ###React Dashboard is using:
+-
 Client:
-
 1.Ant Design components
 2.Redux for store
 3.Redux-thunk for async Api request
 
 Server:
-
 1.Express.js
 2.mongoDb (mongoose)
 3.passport (auth)
