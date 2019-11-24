@@ -1,12 +1,11 @@
 import React from "react";
-import App from "./components/dashboard/dashboard";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { render } from "react-dom";
 import rootReducer from "./reducers";
 import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
-import MainComponent from "./containers/main-container";
+import MainComponent from "./containers/dashboard/main-container";
 
 const loggerMiddleware = createLogger();
 

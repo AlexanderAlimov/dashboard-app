@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import { getProducts, dispatchWithParams } from "../actions";
-import ProductsInfoTable from "../components/products-info-table";
+import HomePage from "../../components/public-page/home-test";
+import { getProducts, dispatchWithParams } from "../../actions";
 
 const mapStateToProps = state => ({
-  products: state.products,
-  loading: state.loading
+  products: state.products
 });
+
 const mapDispatchToProps = dispatch => ({
   getProducts: dispatchWithParams(dispatch, getProducts)
 });
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductsInfoTable);
+)(HomePage);

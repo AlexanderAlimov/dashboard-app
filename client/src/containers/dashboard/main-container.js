@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import MainComponent from "../components/main-component";
-import { logIn, dispatchWithParams } from "../actions/index";
+import MainComponent from "../../components/dashboard/main-component";
+import { logIn, dispatchWithParams } from "../../actions/index";
 
 const mapStateToProps = state => ({
   isLogin: state.user.isLoggedIn

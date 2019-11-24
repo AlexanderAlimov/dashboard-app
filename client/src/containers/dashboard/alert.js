@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import ErrorMessage from "../components/alert";
-import { removeError, dispatchWithParams } from "../actions/index";
+import ErrorMessage from "../../components/dashboard/alert";
+import { removeError, dispatchWithParams } from "../../actions/index";
 
 const mapStateToProps = state => ({
   error: state.user.error

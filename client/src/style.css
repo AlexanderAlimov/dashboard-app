@@ -27,7 +27,6 @@
 	font-size: 1rem;
 	color: white;
 	display: inline-block;
-	margin-right: 43rem;
 }
 
 .btn-remove__categ{
@@ -36,11 +35,6 @@
 .row-table{
 	padding-right: 25px;
 }
-/*and modal footer buttons*/
-.ant-modal-footer{
-	display:none
-}
-/*-----------------------------*/
 
 .row-table__btn-show{
 	margin-left: 4rem !important;
@@ -54,10 +48,15 @@
 	justify-content: space-between;
 }
 
+.header-menu{
+	display: flex;
+	justify-content: flex-start;
+}
+
 .content{
 	padding: 0 50px;
-	 margin-top: 64px; 
-	 height: 100vh;
+	margin-top: 64px; 
+	height: 100vh;
 }
 
 .prod-position{
@@ -87,10 +86,9 @@
 }
 
 .login-form__with-error{
-	width: 30rem;
-	margin: 10rem auto;
+	width: 22rem;
+	margin: auto;
 	text-align: center;
-	height: 30rem;
 	padding: 1rem;
 }
 
@@ -98,3 +96,69 @@
 	width: 100%;
 }
 
+.login-form__logo{
+	width: 230px;
+	height: 63px;
+	text-align: center;
+	font-size: 2rem;
+	display: inline-block;
+	border: 3px solid lightblue;
+	border-radius: 18px;
+	padding-top: 6px;
+	margin: 16px;
+}
+
+.login-form__logo:hover{
+	cursor: pointer;
+}
+
+.header-menu .link a{
+	color: white;
+	font-size: 1rem;
+}
+
+.product-list{
+	display: flex;
+	flex-wrap:wrap ;
+	justify-content: flex-start;
+}
+
+.product-list li{
+	margin-right: .5rem;
+	margin-bottom: .5rem;
+}
+
+
+/*=========antd components style==============*/
+
+/*and modal footer buttons*/
+.ant-modal-footer{
+	display:none
+}
+/*-----------------------------*/
+.ant-layout-sider{
+	background: white;
+	padding-top: 2rem;
+}
+
+.ant-layout.ant-layout-has-sider{
+	margin-top:65px;
+	background: white
+}
+
+.ant-card{
+	text-align: center;
+	border: 3px solid lightgrey;
+}
+
+.ant-layout-content{
+	padding-top: 2rem;
+}
+
+.ant-card-head:hover{
+	background: lightblue;
+	color: white;
+	cursor: pointer;
+}
+
+/*==========================*/

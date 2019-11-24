@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { getProducts, getCategories, dispatchWithParams } from "../actions";
-import CategoryList from "../components/category-list";
+import { getProducts, getCategories, dispatchWithParams } from "../../actions";
+import CategoryList from "../../components/dashboard/category-list";
 
 const mapStateToProps = state => ({
   categories: state.categories

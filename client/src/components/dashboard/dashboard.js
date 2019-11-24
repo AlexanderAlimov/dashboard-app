@@ -1,12 +1,12 @@
 import React from "react";
-import { Row, Col, Layout, Button } from "antd";
-import CategoryList from "../../containers/category-list";
-import AddButton from "../../containers/add-btn";
-import Logo from "../logo";
-import ProductsInfoTable from "../../containers/product-table";
-import ErrorMessage from "../../containers/alert";
-import ShowAll from "../../containers/show-all";
-import AuthBtn from "../../containers/auth-btn";
+import { Row, Col, Layout } from "antd";
+import CategoryList from "../../containers/dashboard/category-list";
+import AddButton from "../../containers/dashboard/add-btn";
+import Logo from "./logo";
+import ProductsInfoTable from "../../containers/dashboard/product-table";
+import ErrorMessage from "../../containers/dashboard/alert";
+import ShowAll from "../../containers/dashboard/show-all";
+import AuthBtn from "../../containers/dashboard/auth-btn";
 import Spiner from "../../containers/spiner";
 
 import "antd/dist/antd.css";
@@ -17,12 +17,6 @@ const { Header, Content } = Layout;
 function App() {
   return (
     <Layout>
-      <Header className="header">
-        <Logo />
-        <div>
-          <AuthBtn title="Logout" />
-        </div>
-      </Header>
       <Content className="content">
         <Row>
           <Col span={6} className="col-logo"></Col>

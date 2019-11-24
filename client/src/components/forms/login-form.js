@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Form, Icon, Input, Button } from "antd";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function NormalLoginForm(props) {
+function LoginForm(props) {
   const [authValue, setInputValue] = useState("");
 
   const handleChange = e => {
@@ -23,6 +24,8 @@ function NormalLoginForm(props) {
     props.onClick(authValue);
     setInputValue("");
   };
+
+  const link = props.isLogin ? "/dashboard" : "/login";
 
   return (
     <Form onSubmit={handleSubmit} className="login-form">
@@ -48,15 +51,13 @@ function NormalLoginForm(props) {
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+          Log In
         </Button>
       </Form.Item>
     </Form>
   );
 }
 
-const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
-  NormalLoginForm
-);
+const WrappedLoginForm = Form.create({ name: "normal_login" })(LoginForm);
 
-export default WrappedNormalLoginForm;
+export default WrappedLoginForm;

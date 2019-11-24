@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import Category from "./category";
-import RemoveCategoryBtn from "../containers/remove-category";
+import RemoveCategoryBtn from "../../containers/dashboard/remove-category";
 
 function CategoryList({
   getCategories = () => {},
   categories = [],
-  getProducts = () => {}
+  getProducts = () => {},
+  place
 }) {
   useEffect(() => {
     getCategories();
@@ -14,7 +15,7 @@ function CategoryList({
     const removeBtn =
       el.name === "Without Category" ? (
         <span></span>
-      ) : (
+      ) : place == "home-page" ? null : (
         <RemoveCategoryBtn catId={el._id} />
       );
     return (

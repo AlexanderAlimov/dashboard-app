@@ -4,8 +4,8 @@ import {
   addProduct,
   addCategory,
   dispatchWithParams
-} from "../actions";
-import AddButton from "../components/buttons/add-btn";
+} from "../../actions";
+import AddButton from "../../components/buttons/add-btn";
 
 const mapStateToProps = state => ({
   categories: state.categories

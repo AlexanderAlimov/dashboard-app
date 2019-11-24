@@ -1,30 +1,21 @@
-import React, { Fragment, useState } from "react";
-import { Button, Modal } from "antd";
-import AuthForm from "../forms/auth-form";
+import React from "react";
+import { Button } from "antd";
+import { Link } from "react-router-dom";
 
-function AuthBtn({ title, login, logout }) {
-  const [isVisible, setInvisible] = useState(false);
+function AuthBtn({ logout, isLoggedIn }) {
+  const title = isLoggedIn ? "Logout" : "Login";
 
-  const showModal = () => {
-    setInvisible(true);
-  };
-
-  const handleHideModal = () => {
-    setInvisible(false);
-  };
-
-  const onClick = title === "Login" ? showModal : logout;
-
-  return (
-    <Fragment>
-      <Button className="row-table__btn-show" onClick={onClick}>
-        {title}
-      </Button>
-      <Modal title={title} visible={isVisible} onCancel={handleHideModal}>
-        <AuthForm title={title} onOk={handleHideModal} onClick={login} />
-      </Modal>
-    </Fragment>
+  const button = isLoggedIn ? (
+    <Button className="row-table__btn-show" onClick={logout}>
+      {title}
+    </Button>
+  ) : (
+    <Button className="row-table__btn-show">
+      {" "}
+      <Link to="/login">{title}</Link>
+    </Button>
   );
-}
 
+  return button;
+}
 export default AuthBtn;
