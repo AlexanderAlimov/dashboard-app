@@ -15,7 +15,7 @@ function CategoryList({
     const removeBtn =
       el.name === "Without Category" ? (
         <span></span>
-      ) : place == "home-page" ? null : (
+      ) : place === "home-page" ? null : (
         <RemoveCategoryBtn catId={el._id} />
       );
     return (

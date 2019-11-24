@@ -2,17 +2,15 @@ import React from "react";
 import { Row, Col, Layout } from "antd";
 import CategoryList from "../../containers/dashboard/category-list";
 import AddButton from "../../containers/dashboard/add-btn";
-import Logo from "./logo";
 import ProductsInfoTable from "../../containers/dashboard/product-table";
 import ErrorMessage from "../../containers/dashboard/alert";
 import ShowAll from "../../containers/dashboard/show-all";
-import AuthBtn from "../../containers/dashboard/auth-btn";
 import Spiner from "../../containers/spiner";
 
 import "antd/dist/antd.css";
 import "../../style.css";
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 function App() {
   return (

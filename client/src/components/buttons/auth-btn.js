@@ -1,12 +1,19 @@
 import React from "react";
 import { Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function AuthBtn({ logout, isLoggedIn }) {
   const title = isLoggedIn ? "Logout" : "Login";
 
+  let history = useHistory();
+
+  const handleClick = () => {
+    logout();
+    history.push("/");
+  };
+
   const button = isLoggedIn ? (
-    <Button className="row-table__btn-show" onClick={logout}>
+    <Button className="row-table__btn-show" onClick={handleClick}>
       {title}
     </Button>
   ) : (

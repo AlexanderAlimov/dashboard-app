@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Form, Icon, Input, Button } from "antd";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-function LoginForm(props) {
+function LoginForm({ form, onClick, isLogin }) {
   const [authValue, setInputValue] = useState("");
+
+  let history = useHistory();
 
   const handleChange = e => {
     const target = e.target ? e.target : e;
@@ -16,16 +18,15 @@ function LoginForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.form.validateFields((err, values) => {
+    form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
       }
     });
-    props.onClick(authValue);
+    onClick(authValue);
     setInputValue("");
+    history.push("/dashboard");
   };
-
-  const link = props.isLogin ? "/dashboard" : "/login";
 
   return (
     <Form onSubmit={handleSubmit} className="login-form">

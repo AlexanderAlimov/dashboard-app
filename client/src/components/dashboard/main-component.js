@@ -2,10 +2,17 @@ import React from "react";
 import Dashboard from "./dashboard";
 import LoginForm from "../forms/login-form";
 import ErrorMessage from "../../containers/dashboard/alert";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import NavHeader from "../header";
 import HomePage from "../../containers/public-page/home-page";
 import Logo from "./logo";
+import ProductDetails from "../../containers/public-page/product-details";
 
 function MainComponent({ isLogin, login }) {
   return (
@@ -22,12 +29,20 @@ function MainComponent({ isLogin, login }) {
             <LoginForm onClick={login} isLogin={isLogin} />
           </div>
         </Route>
-        <Route path="/dashboard">
-          <NavHeader isLogin={isLogin} />
-          <Dashboard />
+        {isLogin && (
+          <Route path="/dashboard">
+            <NavHeader isLogin={isLogin} />
+            <Dashboard />
+          </Route>
+        )}
+        <Route path="/:id">
+          <ProductDetails isLogin={isLogin} />
         </Route>
         <Route path="/">
           <HomePage isLogin={isLogin} />
+        </Route>
+        <Route>
+          <Redirect to="/" />
         </Route>
       </Switch>
     </Router>

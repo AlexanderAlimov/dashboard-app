@@ -11,13 +11,11 @@ function HomePage({ isLogin, products = [], getProducts = () => {} }) {
   useEffect(() => {
     getProducts();
   }, []);
-  console.log(6666666);
-  console.log(products);
 
   const productList = products.map(prod => {
     return (
       <li key={prod._id}>
-        <ProductCard title={prod.name} price={prod.salePrice} />
+        <ProductCard title={prod.name} price={prod.salePrice} id={prod._id} />
       </li>
     );
   });

@@ -15,6 +15,7 @@
 }
 .col-category-list{
 	padding: 25px 50px 25px 60px;
+	text-align: center;
 }
 .col-category-list li{
 	margin-top: 16px
@@ -128,6 +129,28 @@
 	margin-bottom: .5rem;
 }
 
+.product-details{
+	width: 400px;
+	height: 30vh;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid lightgray;
+	padding-top: 20px;
+}
+.product-details h1{
+	font-size: 40px;
+	font-weight: 700;
+}
+
+.product-details h3{
+	font-size: 25px;
+	margin-top: 40px;
+}
+
+.product-details h4{
+	font-size: 20px;
+}
+
 
 /*=========antd components style==============*/
 
@@ -152,7 +175,12 @@
 }
 
 .ant-layout-content{
-	padding-top: 2rem;
+	margin-top: 65px;
+	background: white;
+}
+
+.ant-card-head{
+	background: lightgray;
 }
 
 .ant-card-head:hover{
