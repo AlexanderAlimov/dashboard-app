@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Layout } from "antd";
 import NavHeader from "../header";
 import CategoryList from "../../containers/dashboard/category-list";
-import ProductCard from "../public-page/product-card";
+import ProductCard from "./product-card";
 import ShowAll from "../../containers/dashboard/show-all";
 
 const { Sider, Content } = Layout;

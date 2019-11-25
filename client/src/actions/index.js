@@ -2,11 +2,14 @@ const handleLogin = (callback, dispatch) => ({ message }) =>
   dispatch(message ? isError(message) : callback);
 const handleResponse = (callback, dispatch) => ({ data, message }) =>
   dispatch(message ? isError(message) : callback(data));
-export const dispatchWithParams = (dispatch, callback) => (obj = null) => {
-  return dispatch(callback(obj));
+export const dispatchWithParams = (dispatch, callback) => (
+  obj = null,
+  func = null
+) => {
+  return dispatch(callback(obj, func));
 };
 
-export function logIn(auth) {
+export function logIn(auth, redirectTo) {
   return dispatch => {
     dispatch(removeError());
     return fetch(`/api/login`, {
@@ -17,7 +20,12 @@ export function logIn(auth) {
       body: JSON.stringify(auth)
     })
       .then(response => response.json())
-      .then(handleLogin(isLoginSync(true), dispatch));
+      .then(handleLogin(isLoginSync(true), dispatch))
+      .then(({ type }) => {
+        if (type === "IS_LOGIN") {
+          redirectTo("/dashboard");
+        }
+      });
   };
 }
 
@@ -33,6 +41,22 @@ export function logOut() {
 const isLoginSync = payload => {
   return {
     type: "IS_LOGIN",
+    payload
+  };
+};
+
+export function getSingleProduct(id) {
+  return dispatch => {
+    dispatch(removeError());
+    return fetch(`/api/products/${id}`)
+      .then(response => response.json())
+      .then(handleResponse(getProductDetails, dispatch));
+  };
+}
+
+const getProductDetails = payload => {
+  return {
+    type: "GET_PRODUCT_DETAILS",
     payload
   };
 };

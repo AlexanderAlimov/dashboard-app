@@ -1,9 +1,16 @@
 import { connect } from "react-redux";
 import ProductDetails from "../../components/public-page/product.details";
+import { getSingleProduct, dispatchWithParams } from "../../actions";
 
 const mapStateToProps = state => ({
-  products: state.products,
-  categories: state.categories
+  product: state.productDetails
 });
 
-export default connect(mapStateToProps)(ProductDetails);
+const mapDispatchToProps = dispatch => ({
+  getProduct: dispatchWithParams(dispatch, getSingleProduct)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductDetails);

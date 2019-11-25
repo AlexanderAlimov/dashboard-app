@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import HomePage from "../../components/public-page/home-test";
+import HomePage from "../../components/public-page/home-page";
 import { getProducts, dispatchWithParams } from "../../actions";
 
 const mapStateToProps = state => ({

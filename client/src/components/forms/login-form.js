@@ -23,9 +23,8 @@ function LoginForm({ form, onClick, isLogin }) {
         console.log("Received values of form: ", values);
       }
     });
-    onClick(authValue);
+    onClick(authValue, history.push);
     setInputValue("");
-    history.push("/dashboard");
   };
 
   return (

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import MainComponent from "../../components/dashboard/main-component";
+import RouteComponent from "../../router/router-component";
 import { logIn, dispatchWithParams } from "../../actions/index";
 
 const mapStateToProps = state => ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MainComponent);
+)(RouteComponent);

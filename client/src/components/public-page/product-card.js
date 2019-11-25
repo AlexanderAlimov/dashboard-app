@@ -6,7 +6,7 @@ function ProductCard({ title, price, id }) {
   let history = useHistory();
 
   const handleClick = () => {
-    history.push(`/${id}`);
+    history.push(`/products/${id}`);
   };
   return (
     <Card title={title} style={{ width: 220 }} onClick={handleClick}>

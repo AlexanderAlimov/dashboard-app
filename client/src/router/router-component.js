@@ -1,7 +1,7 @@
 import React from "react";
-import Dashboard from "./dashboard";
-import LoginForm from "../forms/login-form";
-import ErrorMessage from "../../containers/dashboard/alert";
+import Dashboard from "../components/dashboard/dashboard";
+import LoginForm from "../components/forms/login-form";
+import ErrorMessage from "../containers/dashboard/alert";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,12 +9,12 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import NavHeader from "../header";
-import HomePage from "../../containers/public-page/home-page";
-import Logo from "./logo";
-import ProductDetails from "../../containers/public-page/product-details";
+import NavHeader from "../components/header";
+import HomePage from "../containers/public-page/home-page";
+import Logo from "../components/dashboard/logo";
+import ProductDetails from "../containers/public-page/product-details";
 
-function MainComponent({ isLogin, login }) {
+function RouterComponent({ isLogin, login }) {
   return (
     <Router>
       <Switch>
@@ -35,10 +35,10 @@ function MainComponent({ isLogin, login }) {
             <Dashboard />
           </Route>
         )}
-        <Route path="/:id">
+        <Route path="/products/:id">
           <ProductDetails isLogin={isLogin} />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <HomePage isLogin={isLogin} />
         </Route>
         <Route>
@@ -49,4 +49,4 @@ function MainComponent({ isLogin, login }) {
   );
 }
 
-export default MainComponent;
+export default RouterComponent;
