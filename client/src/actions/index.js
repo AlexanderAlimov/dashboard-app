@@ -1,7 +1,9 @@
 const handleLogin = (callback, dispatch) => ({ message }) =>
   dispatch(message ? isError(message) : callback);
+
 const handleResponse = (callback, dispatch) => ({ data, message }) =>
   dispatch(message ? isError(message) : callback(data));
+
 export const dispatchWithParams = (dispatch, callback) => (
   obj = null,
   func = null
@@ -38,7 +40,7 @@ export function logOut() {
   };
 }
 
-const isLoginSync = payload => {
+export const isLoginSync = payload => {
   return {
     type: "IS_LOGIN",
     payload
@@ -138,7 +140,7 @@ export function addCategory(category) {
   };
 }
 
-const addCategorySync = payload => {
+export const addCategorySync = payload => {
   return {
     type: "ADD_CATEGORY",
     payload
