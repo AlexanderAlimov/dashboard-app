@@ -10,6 +10,8 @@ router.get("/api/categories", categoryController.getCategories);
 
 router.get("/api/products", productController.getProducts);
 
+router.get("/api/products/:id", productController.getSingleProduct);
+
 router.post("/api/products", isloggedIn, productController.addProduct);
 
 router.post("/api/categories", isloggedIn, categoryController.addCategory);

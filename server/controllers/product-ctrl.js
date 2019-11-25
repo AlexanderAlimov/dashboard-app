@@ -10,6 +10,13 @@ class ProductController {
       .catch(handleError(res));
   }
 
+  getSingleProduct(req, res, next) {
+    const id = req.params.id;
+    Product.findOne({ _id: id })
+      .then(handleSuccess(res))
+      .catch(handleError(res));
+  }
+
   addProduct(req, res, next) {
     const { name, purchPrice, salePrice, category } = req.body;
     let product = new Product({
