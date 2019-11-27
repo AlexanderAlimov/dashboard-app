@@ -38,6 +38,10 @@ Server:
 
 ### Demo page
 
+##### home page
+
+![homepage](https://user-images.githubusercontent.com/28669437/69755032-fc427300-115f-11ea-8d0f-367fd5647056.png)
+
 ##### sign in page
 
 ![signin](https://user-images.githubusercontent.com/28669437/69481762-bbbfbe00-0e1c-11ea-9baf-aed1111ea847.png)
